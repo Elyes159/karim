@@ -20,7 +20,6 @@ import 'package:quran_app/features/thikr/pages/wird_screen.dart';
 import 'azkar_after_pray.dart';
 import 'hadith_40.dart';
 import 'husin_almuslim.dart';
-import 'ruqia_shareia.dart';
 
 class AnotherFeatures extends StatelessWidget {
   const AnotherFeatures({super.key});
@@ -30,7 +29,7 @@ class AnotherFeatures extends StatelessWidget {
     return GridView(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 4,
-        childAspectRatio: 1 / 1.5,
+        childAspectRatio: 1 / 2.1,
         crossAxisSpacing: 5,
         mainAxisSpacing: 10,
       ),
@@ -46,24 +45,10 @@ class AnotherFeatures extends StatelessWidget {
         ),
         _Item(
           onPressed: () {
-            navigateTo(const WirdScreen(), context);
-          },
-          text: "أذكار الصباح",
-          icon: FlutterIslamicIcons.prayer,
-        ),
-        _Item(
-          onPressed: () {
             navigateTo(QiblahMain(), context);
           },
           text: "القبلة",
           icon: FlutterIslamicIcons.qibla,
-        ),
-        _Item(
-          onPressed: () {
-            navigateTo(const WirdScreen(), context);
-          },
-          text: "أذكار المساء",
-          icon: FlutterIslamicIcons.prayer,
         ),
         if (serviceEnabled)
           _Item(
@@ -75,14 +60,6 @@ class AnotherFeatures extends StatelessWidget {
             text: "أوقات الصلاة",
             icon: FlutterIslamicIcons.prayingPerson,
           ),
-
-        _Item(
-          onPressed: () {
-            navigateTo(SabihScreen(), context);
-          },
-          text: "التسبيح",
-          icon: FlutterIslamicIcons.tasbih2,
-        ),
         _Item(
           onPressed: () {
             navigateTo(const AllhNameScreen(), context);
@@ -97,15 +74,6 @@ class AnotherFeatures extends StatelessWidget {
           text: "الاذكار",
           icon: FlutterIslamicIcons.quran,
         ),
-        _Item(
-          onPressed: () {
-            navigateTo(const AudioHome(), context);
-          },
-          text: "السماع",
-          icon: FlutterIslamicIcons.quran,
-        ),
-
-        //
         _Item(
           onPressed: () {
             navigateTo(HisnMuslim(), context);
@@ -127,16 +95,6 @@ class AnotherFeatures extends StatelessWidget {
           text: "أذكار بعد الصلاة",
           icon: FlutterIslamicIcons.tasbihHand,
         ),
-
-        //second
-        _Item(
-          onPressed: () {
-            navigateTo(const RuqiaShareiahScreen(), context);
-          },
-          text: "الرقية الشرعية",
-          icon: FlutterIslamicIcons.quran,
-        ),
-
         _Item(
           onPressed: () {
             navigateTo(const SurahWithAllDetail(), context);
