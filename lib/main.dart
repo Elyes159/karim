@@ -15,10 +15,8 @@ import 'package:quran_app/features/quran_audio/ui/cubit/audio_cubit.dart';
 
 import 'package:quran_app/core/BlocObserver/BlocObserver.dart';
 import 'package:quran_app/core/Home/cubit.dart';
-import 'package:quran_app/features/read_quran/data/data_source/data_client.dart';
 import 'package:quran_app/features/read_quran/presentation/bloc/read_quran_bloc.dart';
 import 'package:quran_app/starting/signin.dart';
-import 'package:sqflite/sqflite.dart';
 import 'features/my_adia/core/db/db_helper_note.dart';
 import 'main_view.dart';
 import 'package:quran_app/core/shared/export/export-shared.dart';
@@ -52,47 +50,44 @@ void main() async {
   await PermissionService.handelNotification();
 
   // Ajouter la condition ici
-  FirebaseAuth.instance.authStateChanges().listen((User? user) {
-    if (user == null) {
-      // Rediriger l'utilisateur vers la page de connexion
-      runApp(
-        MaterialApp(
-          home: Login(),
-        ),
-      );
-    } else {
-      // Rediriger l'utilisateur vers la page existante
-      // Par exemple, vous pouvez utiliser Navigator.pushReplacementNamed()
-      // pour rediriger l'utilisateur vers la page existante
-      runApp(
-        MultiBlocProvider(
-          providers: [
-            BlocProvider(
-              create: (context) => AudioCubit()..initAudioPlayer(),
-            ),
+  User? user = FirebaseAuth.instance.currentUser;
 
-            //Home Cubit
-            BlocProvider(create: (context) => HomeCubit()..checkConnection()),
-
-            // BlocProvider(create: (context) => QuranCubit()),
-
-            BlocProvider(create: (context) => BaseBloc()),
-            BlocProvider(create: (context) => BookmarkBloc()),
-            BlocProvider(
-                lazy: false,
-                create: (context) => ReadQuranBloc()..add(LoadQuranEvent())),
-
-            //
-          ],
-          child: BlocBuilder<HomeCubit, HomeState>(
-            builder: (context, state) {
-              return const MyApp();
-            },
+  if (user == null) {
+    // Rediriger l'utilisateur vers la page de connexion
+    runApp(
+      MaterialApp(
+        home: Login(),
+      ),
+    );
+  } else {
+    // Rediriger l'utilisateur vers la page existante
+    // Par exemple, vous pouvez utiliser Navigator.pushReplacementNamed()
+    // pour rediriger l'utilisateur vers la page existante
+    runApp(
+      MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => AudioCubit()..initAudioPlayer(),
           ),
+
+          BlocProvider(create: (context) => HomeCubit()..checkConnection()),
+
+          BlocProvider(create: (context) => BaseBloc()),
+          BlocProvider(create: (context) => BookmarkBloc()),
+          BlocProvider(
+              lazy: false,
+              create: (context) => ReadQuranBloc()..add(LoadQuranEvent())),
+
+          //
+        ],
+        child: BlocBuilder<HomeCubit, HomeState>(
+          builder: (context, state) {
+            return const MyApp();
+          },
         ),
-      );
-    }
-  });
+      ),
+    );
+  }
 }
 
 class RestartWidget extends StatefulWidget {
