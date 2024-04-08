@@ -32,30 +32,8 @@ class MasbahState extends HomeState {}
 
 class SelectStyleType extends HomeState {}
 
-//
-// class CurrentAudioPlayerState extends HomeState {}
-
-// // class NoConnectedState extends HomeState {}
-
-// class UpdateAudioPlayerState extends HomeState {}
-
-// class LoadingInitAudioPlayerState extends HomeState {}
-
-// //
-// class PlayAudioLoadingState extends HomeState {}
-
-// class PlayAudioSuccessState extends HomeState {}
-
-// //
-// class NextPlayAudioLoadingState extends HomeState {}
-
-// class NextPlayAudioSuccessState extends HomeState {}
-
-//theme mode state
 class ChangeThemeModeState extends HomeState {}
 
-
-//
 class ConnectedState extends HomeState {}
 
 class NoConnectedState extends HomeState {}

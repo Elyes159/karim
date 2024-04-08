@@ -122,34 +122,35 @@ class _Item extends StatelessWidget {
   });
 
   final String text;
-
   final IconData? icon;
-
   final void Function() onPressed;
+
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onPressed,
-      child: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: FxColors.secondary,
+    return Material(
+      // Ajout de Material autour du contenu du widget
+      child: InkWell(
+        onTap: onPressed,
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: FxColors.secondary,
+              ),
+              child: Icon(
+                icon,
+                size: 40,
+                // color: DarkColors.customPrimary,
+              ),
             ),
-            child: Icon(
-              icon,
-              size: 40,
-              // color: DarkColors.customPrimary,
-            ),
-          ),
-          // if (isSvgImage)
-
-          const SizedBox(height: 5),
-          text.autoSize(context,
-              maxLines: 3, minFontSize: 10, textAlign: TextAlign.center),
-        ],
+            // if (isSvgImage)
+            const SizedBox(height: 5),
+            text.autoSize(context,
+                maxLines: 3, minFontSize: 10, textAlign: TextAlign.center),
+          ],
+        ),
       ),
     );
   }

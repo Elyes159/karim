@@ -1,10 +1,11 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:quran_app/constant/custombutton.dart';
 import 'package:quran_app/constant/customlogo.dart';
 import 'package:quran_app/constant/textformfield.dart';
+import 'package:quran_app/core/constant.dart';
 import 'package:quran_app/features/home/pages/home_screen.dart';
 import 'package:quran_app/starting/welcome_signup.dart';
 
@@ -16,28 +17,6 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   TextEditingController password = TextEditingController();
   TextEditingController email = TextEditingController();
-
-  Future signInWithGoogle() async {
-    // Trigger the authentication flow
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-    // Obtain the auth details from the request
-    final GoogleSignInAuthentication? googleAuth =
-        await googleUser?.authentication;
-
-    // Create a new credesaveUserState();ntial
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
-    // Once signed in, return the UserCredential
-    await FirebaseAuth.instance.signInWithCredential(credential);
-    Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(
-          builder: (BuildContext context) => const HomeScreenNew()),
-      (route) => false,
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,16 +31,7 @@ class _LoginState extends State<Login> {
                 SizedBox(height: 50),
                 Customlogo(),
                 SizedBox(height: 20),
-                // Text(
-                //   translation(context).loginn,
-                //   style: GoogleFonts.poppins(
-                //       fontSize: 30, fontWeight: FontWeight.bold),
-                // ),
                 SizedBox(height: 10),
-                // Text(
-                //   "Login to continue using the app",
-                //   style: TextStyle(color: Colors.grey),
-                // ),
                 SizedBox(height: 20),
                 Text(
                   "Input Your Email",
@@ -145,23 +115,18 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 SizedBox(
-                    width: double.infinity,
-                    height: 45,
-                    child: CustomButton(
-                      title: "Login",
-                      onPressed: () async {
+                  width: double.infinity,
+                  height: 45,
+                  child: Material(
+                    child: GestureDetector(
+                      onTap: () async {
                         try {
                           final credential = await FirebaseAuth.instance
                               .signInWithEmailAndPassword(
                             email: email.text,
                             password: password.text,
                           );
-
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HomeScreenNew()));
-                          // ignore: nullable_type_in_catch_clause
+                          navigateTo(const HomeScreenNew(), context);
                         } on FirebaseAuthException catch (e) {
                           if (e.code == 'user-not-found') {
                             print('No user found for that email.');
@@ -170,30 +135,26 @@ class _LoginState extends State<Login> {
                           }
                         }
                       },
-                    )),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(width: 10),
-                    SizedBox(
-                      height: 80,
-                      width: 200,
-                      child: MaterialButton(
-                        onPressed: () {
-                          signInWithGoogle();
-                        },
-                        child: Text(
-                          "Login With Google",
-                          textAlign: TextAlign.right,
-                          style: GoogleFonts.poppins(
-                              fontSize: 14, color: Colors.grey[900]),
+                      child: Container(
+                        width: double.infinity,
+                        height: 45,
+                        decoration: BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: const Center(
+                          child: Text(
+                            "Login",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                    SizedBox(width: 20),
-                  ],
+                  ),
                 ),
-                //SizedBox(height: 10),
                 InkWell(
                   onTap: () {
                     Navigator.of(context).push(PageRouteBuilder(

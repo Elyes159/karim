@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:quran_app/core/components/base_header.dart';
 import 'package:quran_app/core/components/location_enable_screen.dart';
 import 'package:quran_app/core/components/shimmer_base.dart';
@@ -25,7 +27,20 @@ class ItemPrayerHome extends StatelessWidget {
             ? const LocationEnableScreen()
             : Column(
                 children: [
-                  const BaseHeder(text: "اوقات الصلاة"),
+                  Row(
+                    children: [
+                      ElevatedButton(
+                        onPressed: () async {
+                          await FirebaseAuth.instance.signOut();
+                        },
+                        child: Text(
+                          "تسجيل خروج",
+                          style: GoogleFonts.poppins(color: Colors.white),
+                        ),
+                      ),
+                      BaseHeder(text: "اوقات الصلاة"),
+                    ],
+                  ),
                   SizedBox(
                     width: double.infinity,
                     height: context.getHight(15),
