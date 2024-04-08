@@ -23,8 +23,8 @@ class NotifyHelper {
     tz.initializeTimeZones();
     _configureSelectNotificationSubject(context);
     await _configureLocalTimeZone();
-    final IOSInitializationSettings initializationSettingsIOS =
-        IOSInitializationSettings(
+    final DarwinInitializationSettings initializationSettingsIOS =
+        DarwinInitializationSettings(
       requestSoundPermission: false,
       requestBadgePermission: false,
       requestAlertPermission: false,
@@ -41,7 +41,8 @@ class NotifyHelper {
     );
     await flutterLocalNotificationsPlugin.initialize(
       initializationSettings,
-      onSelectNotification: (String? payload) async {
+      onDidReceiveNotificationResponse: (NotificationResponse response) async {
+        String? payload = response.payload;
         if (payload != null) {
           debugPrint('notification payload: $payload');
         }

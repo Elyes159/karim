@@ -79,7 +79,7 @@ class HomeCubit extends Cubit<HomeState> {
         ISCONNECTED = false;
         emit(NoConnectedState());
       }
-    });
+    } as void Function(List<ConnectivityResult> event)?);
   }
 
   @override

@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quran_app/core/services/update_serves.dart';
-
 import 'package:quran_app/features/home/widgets/custom_bottom_navigation_bar2.dart';
 import 'package:quran_app/main.dart';
 
@@ -11,27 +10,31 @@ part 'base_state.dart';
 
 class BaseBloc extends Bloc<BaseEvent, BaseState> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-  static BaseBloc get(context) => BlocProvider.of(context);
 
   BaseBloc() : super(BaseState()) {
-    try {
-      InUpdateServes.checkUpdate();
-    } catch (e) {
-      logger.e(e);
-    }
-    <SetStateBaseBlocEvent>(setState) {
-      // TODO: implement
-      throw UnimplementedError();
-    };
+    // try {
+    //   // InUpdateServes.checkUpdate();
+    // } catch (e) {
+    //   // Gestion de l'erreur, par exemple:
+    //   logger.e(e);
+    // }
+
+    // Définition des gestionnaires d'événements
+    on<SetStateBaseBlocEvent>(_setState);
     on<ChangeScreenEvent>(_changeScreen);
   }
 
-  FutureOr<void> setState(event, emit) {
+  // Gestionnaire d'événements pour SetStateBaseBlocEvent
+  void _setState(SetStateBaseBlocEvent event, Emitter<BaseState> emit) {
     emit(BaseState());
   }
 
-  FutureOr<void> _changeScreen(event, emit) {
+  // Gestionnaire d'événements pour ChangeScreenEvent
+  void _changeScreen(ChangeScreenEvent event, Emitter<BaseState> emit) {
     currentPage = event.current;
     emit(BaseState());
   }
+
+  // Méthode statique pour récupérer l'instance du Bloc
+  static BaseBloc get(context) => BlocProvider.of(context);
 }
