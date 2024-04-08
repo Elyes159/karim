@@ -13,6 +13,7 @@ import 'package:quran_app/features/prayer_time/cubit/prayer_time_cubit.dart';
 import 'package:quran_app/features/prayer_time/model/time_prayer_model.dart';
 import 'package:quran_app/features/prayer_time/pages/prayer_time_screen.dart';
 import 'package:quran_app/features/prayer_time/text/teme_prayer_text.dart';
+import 'package:quran_app/starting/signin.dart';
 
 import '../../../core/services/services_location.dart';
 
@@ -32,6 +33,7 @@ class ItemPrayerHome extends StatelessWidget {
                       ElevatedButton(
                         onPressed: () async {
                           await FirebaseAuth.instance.signOut();
+                          navigateTo(Login(), context);
                         },
                         child: Text(
                           "تسجيل خروج",
@@ -116,37 +118,40 @@ class _ItemPrayerState extends State<_ItemPrayer> {
             ? Border.all(color: Colors.white)
             : null,
       ),
-      child: InkWell(
-        onTap: () {
-          context.push(const PrayerTimeScreen());
-          isMaxLine = !isMaxLine;
-          setState(() {});
-        },
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Expanded(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Image.asset(
-                  widget.data.image,
+      child: Material(
+        // Ajout de Material autour du contenu du widget
+        child: InkWell(
+          onTap: () {
+            context.push(const PrayerTimeScreen());
+            isMaxLine = !isMaxLine;
+            setState(() {});
+          },
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.asset(
+                    widget.data.image,
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              widget.data.title,
-              style: titleMedium(context),
-            ),
-            const SizedBox(height: 5),
-            Text(
-              widget.data.time,
-              style: titleMedium(context).copyWith(
-                color: Colors.grey,
-                fontSize: 17,
+              const SizedBox(height: 10),
+              Text(
+                widget.data.title,
+                style: titleMedium(context),
               ),
-            ),
-          ],
+              const SizedBox(height: 5),
+              Text(
+                widget.data.time,
+                style: titleMedium(context).copyWith(
+                  color: Colors.grey,
+                  fontSize: 17,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

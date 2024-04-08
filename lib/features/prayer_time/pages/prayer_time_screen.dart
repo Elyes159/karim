@@ -32,7 +32,6 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              //!time line
               BlocBuilder<PrayerTimeCubit, PrayerTimeState>(
                 builder: (context, state) {
                   switch (state.prayerState) {
