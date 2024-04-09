@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:quran_app/FontSizeParam/settingFont.dart';
 import 'package:quran_app/core/components/base_header.dart';
 import 'package:quran_app/core/components/location_enable_screen.dart';
 import 'package:quran_app/core/components/shimmer_base.dart';
@@ -14,11 +16,37 @@ import 'package:quran_app/features/prayer_time/model/time_prayer_model.dart';
 import 'package:quran_app/features/prayer_time/pages/prayer_time_screen.dart';
 import 'package:quran_app/features/prayer_time/text/teme_prayer_text.dart';
 import 'package:quran_app/starting/signin.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/services/services_location.dart';
 
-class ItemPrayerHome extends StatelessWidget {
-  const ItemPrayerHome({super.key});
+class ItemPrayerHome extends StatefulWidget {
+  const ItemPrayerHome({Key? key}) : super(key: key);
+
+  @override
+  _ItemPrayerHomeState createState() => _ItemPrayerHomeState();
+}
+
+class _ItemPrayerHomeState extends State<ItemPrayerHome> {
+  late double _fontSize = 16.0;
+  @override
+  void initState() {
+    super.initState();
+    _loadFontSize();
+  }
+
+  @override
+  void dispose() {
+    // Annuler l'abonnement pour éviter les fuites de mémoire
+    super.dispose();
+  }
+
+  Future<void> _loadFontSize() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _fontSize = prefs.getDouble('fontSize') ?? 16.0;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,10 +65,23 @@ class ItemPrayerHome extends StatelessWidget {
                         },
                         child: Text(
                           "تسجيل خروج",
-                          style: GoogleFonts.poppins(color: Colors.white),
+                          style: GoogleFonts.poppins(
+                            color: Colors.white,
+                            fontSize: _fontSize,
+                          ),
                         ),
                       ),
                       BaseHeder(text: "اوقات الصلاة"),
+                      ElevatedButton(
+                        onPressed: () async {
+                          await FirebaseAuth.instance.signOut();
+                          navigateTo(
+                            SettingsPage(initialFontSize: _fontSize),
+                            context,
+                          );
+                        },
+                        child: Icon(Icons.settings),
+                      ),
                     ],
                   ),
                   SizedBox(
@@ -57,12 +98,12 @@ class ItemPrayerHome extends StatelessWidget {
 
                           case RequestState.error:
                             return const _Loading();
+
                           case RequestState.success:
                             return ListView.builder(
                               physics: const BouncingScrollPhysics(),
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (context, index) {
-                                //set the color to the next player
                                 var data = prayerData[index];
                                 return BaseAnimate(
                                   index: index,
@@ -95,6 +136,7 @@ class _ItemPrayer extends StatefulWidget {
     required this.index,
     required this.nextPray,
   });
+
   final TimePrayerModel data;
   final TimePrayerModel nextPray;
   final int index;
@@ -106,6 +148,7 @@ class _ItemPrayer extends StatefulWidget {
 
 class _ItemPrayerState extends State<_ItemPrayer> {
   bool isMaxLine = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -119,7 +162,6 @@ class _ItemPrayerState extends State<_ItemPrayer> {
             : null,
       ),
       child: Material(
-        // Ajout de Material autour du contenu du widget
         child: InkWell(
           onTap: () {
             context.push(const PrayerTimeScreen());
@@ -160,6 +202,7 @@ class _ItemPrayerState extends State<_ItemPrayer> {
 
 class _Loading extends StatelessWidget {
   const _Loading();
+
   @override
   Widget build(BuildContext context) {
     return Row(

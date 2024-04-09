@@ -34,54 +34,57 @@ class _ItemPrayerState extends State<ItemPrayer> {
             ? Border.all(color: Colors.white)
             : null,
       ),
-      child: InkWell(
-        onTap: () {
-          isMaxLine = !isMaxLine;
-          setState(() {});
-        },
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: Image.asset(
-                        widget.data.image,
-                        height: SizeConfig.blockSizeVertical! * 4,
+      child: Material(
+        // Ajout de Material autour du contenu du widget
+        child: InkWell(
+          onTap: () {
+            isMaxLine = !isMaxLine;
+            setState(() {});
+          },
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Image.asset(
+                          widget.data.image,
+                          height: SizeConfig.blockSizeVertical! * 4,
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      widget.data.title,
-                      style: titleMedium(context),
-                    ),
-                  ],
-                ),
-                Text(
-                  widget.data.time,
-                  style: titleMedium(context).copyWith(
-                    color: Colors.grey,
-                    fontSize: 17,
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        widget.data.title,
+                        style: titleMedium(context),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            ),
-            Text(
-              widget.data.content,
-              maxLines: isMaxLine ? null : 1,
-              overflow: isMaxLine ? null : TextOverflow.ellipsis,
-              style: const TextStyle(
-                fontSize: 12,
-                color: Colors.grey,
+                  Text(
+                    widget.data.time,
+                    style: titleMedium(context).copyWith(
+                      color: Colors.grey,
+                      fontSize: 17,
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
+              Text(
+                widget.data.content,
+                maxLines: isMaxLine ? null : 1,
+                overflow: isMaxLine ? null : TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontSize: 12,
+                  color: Colors.grey,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

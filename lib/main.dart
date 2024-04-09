@@ -32,9 +32,9 @@ Logger logger = Logger();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-
   await FlutterDownloader.initialize();
 
+  // Initialisation des blocs et autres services
   Bloc.observer = MyBlocObserver();
   await DBHelperDou.initDb();
   await DioHelper.init();
@@ -45,58 +45,47 @@ void main() async {
   setupServiceLocator();
   serviceEnabled = await PermissionService.locationEnabled();
 
+  // Vérification et demande de permission de localisation
   final permission = await Geolocator.checkPermission();
   if (permission == LocationPermission.denied) {
     await Geolocator.requestPermission();
   }
 
+  // Gestion des notifications
   await PermissionService.handelNotification();
 
+  // Vérification de l'utilisateur actuel
   User? user = FirebaseAuth.instance.currentUser;
 
+  // Configuration des blocs
+  final providers = [
+    Provider<PrayerTimeCubit>(create: (_) => PrayerTimeCubit()),
+    BlocProvider(create: (context) => AudioCubit()..initAudioPlayer()),
+    BlocProvider(create: (context) => HomeCubit()..checkConnection()),
+    BlocProvider(create: (context) => BaseBloc()),
+    BlocProvider(create: (context) => BookmarkBloc()),
+    BlocProvider(
+        lazy: false,
+        create: (context) => ReadQuranBloc()..add(LoadQuranEvent())),
+  ];
+
+  // Sélection du widget racine en fonction de la présence de l'utilisateur
+  Widget app;
   if (user == null) {
-    runApp(
-      MultiBlocProvider(
-        providers: [
-          Provider<PrayerTimeCubit>(create: (_) => PrayerTimeCubit()),
-          BlocProvider(
-            create: (context) => AudioCubit()..initAudioPlayer(),
-          ),
-          BlocProvider(create: (context) => HomeCubit()..checkConnection()),
-          BlocProvider(create: (context) => BaseBloc()),
-          BlocProvider(create: (context) => BookmarkBloc()),
-          BlocProvider(
-              lazy: false,
-              create: (context) => ReadQuranBloc()..add(LoadQuranEvent())),
-        ],
-        child: MaterialApp(
-          home: Login(),
-        ),
-      ),
-    );
+    app = Login();
   } else {
-    runApp(
-      MultiBlocProvider(
-        providers: [
-          Provider<PrayerTimeCubit>(create: (_) => PrayerTimeCubit()),
-          BlocProvider(
-            create: (context) => AudioCubit()..initAudioPlayer(),
-          ),
-          BlocProvider(create: (context) => HomeCubit()..checkConnection()),
-          BlocProvider(create: (context) => BaseBloc()),
-          BlocProvider(create: (context) => BookmarkBloc()),
-          BlocProvider(
-              lazy: false,
-              create: (context) => ReadQuranBloc()..add(LoadQuranEvent())),
-        ],
-        child: BlocBuilder<HomeCubit, HomeState>(
-          builder: (context, state) {
-            return MyApp();
-          },
-        ),
-      ),
+    app = BlocBuilder<HomeCubit, HomeState>(
+      builder: (context, state) => MyApp(),
     );
   }
+
+  // Exécution de l'application avec les blocs configurés
+  runApp(
+    MultiBlocProvider(
+      providers: providers,
+      child: MaterialApp(home: app),
+    ),
+  );
 }
 
 Future<Database?> getDatabase() async {

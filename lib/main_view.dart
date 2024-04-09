@@ -15,7 +15,6 @@ import 'package:quran_app/features/home/widgets/custom_bottom_navigation_bar2.da
 import 'package:quran_app/features/home/widgets/next_player.dart';
 import 'package:quran_app/main.dart';
 
-import 'core/AppLocalizations/AppLocalizations.dart';
 import 'core/services/get_cash_data.dart';
 import 'core/services/services_notification.dart';
 import 'core/util/exit_alert.dialog.dart';
@@ -79,7 +78,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
           locale: const Locale('ar'),
           localizationsDelegates: const [
-            AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate
@@ -93,11 +91,10 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             }
             return supportedLocales.first;
           },
-          supportedLocales: const [Locale('ar'), Locale('en')],
+          supportedLocales: const [Locale('ar')],
           onGenerateRoute: RouterGenerator.getRoute,
           initialRoute: RoutesManager.main,
           home: const MainView(),
-          // darkTheme: getDarkMode(),
           darkTheme: getDarkTheme(),
           theme: getLightMode(),
           title: 'بلغوا عني ',
