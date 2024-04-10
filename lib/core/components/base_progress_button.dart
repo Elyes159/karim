@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:quran_app/core/shared/export/export-shared.dart';
@@ -69,7 +71,6 @@ Color? getBackColor(RequestState state, Color? defaultColor) {
     case RequestState.error:
       return Colors.red;
   }
-  return null;
 }
 
 //Widget
@@ -122,5 +123,4 @@ double? getWidth(RequestState state, double? width, BuildContext context) {
     case RequestState.error:
       return context.getWidth(70);
   }
-  return null;
 }

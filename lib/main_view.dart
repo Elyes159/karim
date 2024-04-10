@@ -11,10 +11,13 @@ import 'package:quran_app/core/theme/dark_theme.dart';
 import 'package:quran_app/core/util/toast_manager.dart';
 import 'package:quran_app/core/shared/export/export-shared.dart';
 import 'package:quran_app/core/shared/resources/size_config.dart';
+import 'package:quran_app/features/home/pages/home_screen.dart';
 import 'package:quran_app/features/home/widgets/custom_bottom_navigation_bar2.dart';
 import 'package:quran_app/features/home/widgets/next_player.dart';
+import 'package:quran_app/languages/languages_constants.dart';
 import 'package:quran_app/main.dart';
 
+import 'core/AppLocalizations/AppLocalizations.dart';
 import 'core/services/get_cash_data.dart';
 import 'core/services/services_notification.dart';
 import 'core/util/exit_alert.dialog.dart';
@@ -32,9 +35,27 @@ class MyApp extends StatefulWidget {
 
   @override
   State<MyApp> createState() => _MyAppState();
+  static void setLocale(BuildContext context, Locale newLocale) {
+    _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
+    state?.setLocale(newLocale);
+  }
 }
 
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
+  Locale? _locale;
+
+  setLocale(Locale locale) {
+    setState(() {
+      _locale = locale;
+    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    getLocale().then((locale) => {setLocale(locale)});
+    super.didChangeDependencies();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -49,20 +70,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   }
 
   @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    super.didChangeAppLifecycleState(state);
-
-    if (state == AppLifecycleState.paused) {
-      setLastRead();
-      // The app is in the background
-      logger.d('App is paused');
-    } else if (state == AppLifecycleState.resumed) {
-      // The app is in the foreground
-      logger.d('App is resumed');
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => PrayerTimeCubit()..initPrayerTime(),
@@ -72,34 +79,19 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         splitScreenMode: true,
         builder: (_, child) => MaterialApp(
           builder: BotToastInit(), //1. call BotToastInit
-          navigatorObservers: [
-            BotToastNavigatorObserver()
-          ], //2. registered route observer
-
-          locale: const Locale('ar'),
+          navigatorObservers: [BotToastNavigatorObserver()],
+          home: HomeScreenNew(),
           localizationsDelegates: const [
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate
           ],
-          localeResolutionCallback: (deviceLocale, supportedLocales) {
-            for (var locale in supportedLocales) {
-              if (deviceLocale != null &&
-                  deviceLocale.languageCode == locale.languageCode) {
-                return deviceLocale;
-              }
-            }
-            return supportedLocales.first;
-          },
-          supportedLocales: const [Locale('ar')],
-          onGenerateRoute: RouterGenerator.getRoute,
-          initialRoute: RoutesManager.main,
-          home: const MainView(),
-          darkTheme: getDarkTheme(),
-          theme: getLightMode(),
-          title: 'بلغوا عني ',
-          themeMode: ThemeMode.dark,
-          debugShowCheckedModeBanner: false,
+          supportedLocales: [
+            Locale('en', ''),
+            Locale('ar', ''),
+            Locale('fr', '')
+          ],
+          locale: Locale('ar', ''),
         ),
       ),
     );

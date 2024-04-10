@@ -19,6 +19,7 @@ import 'package:quran_app/core/BlocObserver/BlocObserver.dart';
 import 'package:quran_app/core/Home/cubit.dart';
 import 'package:quran_app/features/read_quran/data/data_source/data_client.dart';
 import 'package:quran_app/features/read_quran/presentation/bloc/read_quran_bloc.dart';
+import 'package:quran_app/l10n/l10n.dart';
 import 'package:quran_app/starting/signin.dart';
 import 'package:sqflite/sqflite.dart';
 import 'features/my_adia/core/db/db_helper_note.dart';
@@ -83,7 +84,13 @@ void main() async {
   runApp(
     MultiBlocProvider(
       providers: providers,
-      child: MaterialApp(home: app),
+      child: MaterialApp(
+          // supportedLocales: L10n.all,
+          // locale: const Locale('en'),
+          // localizationsDelegates: const [
+          //   AppLocalizations.delegate,
+          // ],
+          home: app),
     ),
   );
 }
