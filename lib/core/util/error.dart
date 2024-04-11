@@ -48,8 +48,6 @@ class BaseErrorRobot extends StatelessWidget {
           Text(
             message,
             textAlign: TextAlign.center,
-            style: titleMedium(context)
-                .copyWith(fontWeight: FontWeight.bold, color: Colors.red),
           )
         ],
       ),

@@ -147,8 +147,6 @@ Future<void> showMyExitDialogFunction({
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       'هل أنت متأكد من الخروج',
-                      style: titleMedium(context)
-                          .copyWith(fontSize: 20, color: Colors.black),
                     ),
                   ),
                   SizedBox(
@@ -166,8 +164,6 @@ Future<void> showMyExitDialogFunction({
                             decoration: BoxDecoration(color: FxColors.primary),
                             child: Text(
                               'تراجع',
-                              style: titleMedium(context)
-                                  .copyWith(color: Colors.white),
                             ),
                           ),
                         ),
@@ -185,8 +181,6 @@ Future<void> showMyExitDialogFunction({
                             ),
                             child: Text(
                               'الخروج',
-                              style: titleMedium(context)
-                                  .copyWith(color: Colors.white),
                             ),
                           ),
                         ),
@@ -234,11 +228,6 @@ Future<void> showMyResetDataDialogFunction({
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       'سوف نقوم بحذف بيانات تسجيل الدخول السابقه',
-                      style: titleMedium(context).copyWith(
-                        fontSize: 14,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
                     ),
                   ),
                   SizedBox(
@@ -256,8 +245,6 @@ Future<void> showMyResetDataDialogFunction({
                             decoration: BoxDecoration(color: FxColors.primary),
                             child: Text(
                               'تراجع',
-                              style: titleMedium(context)
-                                  .copyWith(color: Colors.white),
                             ),
                           ),
                         ),
@@ -275,8 +262,6 @@ Future<void> showMyResetDataDialogFunction({
                             ),
                             child: Text(
                               'موافق',
-                              style: titleMedium(context)
-                                  .copyWith(color: Colors.white),
                             ),
                           ),
                         ),

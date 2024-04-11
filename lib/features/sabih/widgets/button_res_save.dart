@@ -103,7 +103,6 @@ class _MyButton extends StatelessWidget {
       icon: icon,
       label: Text(
         label,
-        style: titleMedium(context),
       ),
     );
   }

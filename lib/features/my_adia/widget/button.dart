@@ -32,8 +32,6 @@ class MyButtonCustom extends StatelessWidget {
           children: [
             Text(
               lable,
-              style: titleSmall(context)
-                  .copyWith(fontSize: sizeFont ?? 14, color: Colors.white),
             ),
           ],
         ),

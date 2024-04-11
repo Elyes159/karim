@@ -42,7 +42,6 @@ class Hadith40 extends StatelessWidget {
                     textDirection: TextDirection.rtl,
                     trimCollapsedText: 'عرض أكثر',
                     trimExpandedText: 'عرض أقل',
-                    style: titleMedium(context),
                     moreStyle: const TextStyle(
                       color: Color.fromARGB(255, 162, 55, 47),
                       fontSize: 14,
@@ -60,8 +59,6 @@ class Hadith40 extends StatelessWidget {
                   ),
                   Text(
                     "شرح الحديث",
-                    style:
-                        titleMedium(context).copyWith(color: FxColors.primary),
                   ),
                   const SizedBox(
                     height: 15,

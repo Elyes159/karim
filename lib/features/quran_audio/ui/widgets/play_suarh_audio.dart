@@ -56,7 +56,6 @@ class _PlaySurahAudioState extends State<PlaySurahAudio> {
                   builder: (context, state) {
                     return Text(
                       quranRH.surahs[AudioPlayerHelper.currentSurah].arabicName,
-                      style: titleSmall(context),
                     );
                   },
                 );

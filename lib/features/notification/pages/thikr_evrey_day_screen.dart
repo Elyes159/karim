@@ -22,7 +22,6 @@ class _ThikrEvreyDayScreenState extends State<ThikrEvreyDayScreen> {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 "سيتم ارسال اشعار عند كل وقت تم تحديده حسب كل ذكر",
-                style: titleSmall(context),
               ),
             ),
           ),
@@ -49,9 +48,6 @@ class _ThikrEvreyDayScreenState extends State<ThikrEvreyDayScreen> {
                 ),
                 Text(
                   "الأذكار اليومية",
-                  style: titleSmall(context).copyWith(
-                    color: FxColors.primary,
-                  ),
                 ),
               ],
             ),
@@ -69,14 +65,12 @@ class _ThikrEvreyDayScreenState extends State<ThikrEvreyDayScreen> {
                     children: [
                       Text(
                         "أذكار الصباح",
-                        style: titleSmall(context),
                       ),
                       Row(
                         children: [
                           Text(
                             ManageNotificationController
                                 .timeRememberThikrMorning,
-                            style: titleSmall(context),
                           ),
                           _MySwitch(
                             onChanged: (val) async {
@@ -103,13 +97,11 @@ class _ThikrEvreyDayScreenState extends State<ThikrEvreyDayScreen> {
                     children: [
                       Text(
                         "أذكار المساء",
-                        style: titleSmall(context),
                       ),
                       Row(
                         children: [
                           Text(
                             ManageNotificationController.timeRememberThikrNight,
-                            style: titleSmall(context),
                           ),
                           _MySwitch(
                             onChanged: (val) async {
@@ -135,13 +127,11 @@ class _ThikrEvreyDayScreenState extends State<ThikrEvreyDayScreen> {
                     children: [
                       Text(
                         "أذكار الإستيقاض",
-                        style: titleSmall(context),
                       ),
                       Row(
                         children: [
                           Text(
                             ManageNotificationController.timeRememberThikrGetUp,
-                            style: titleSmall(context),
                           ),
                           _MySwitch(
                             onChanged: (val) async {
@@ -167,13 +157,11 @@ class _ThikrEvreyDayScreenState extends State<ThikrEvreyDayScreen> {
                     children: [
                       Text(
                         "أذكار النوم",
-                        style: titleSmall(context),
                       ),
                       Row(
                         children: [
                           Text(
                             ManageNotificationController.timeRememberThikrSleep,
-                            style: titleSmall(context),
                           ),
                           _MySwitch(
                             onChanged: (val) async {
@@ -199,14 +187,12 @@ class _ThikrEvreyDayScreenState extends State<ThikrEvreyDayScreen> {
                     children: [
                       Text(
                         "قيام اليل",
-                        style: titleSmall(context),
                       ),
                       Row(
                         children: [
                           Text(
                             ManageNotificationController
                                 .timeRememberPrayerMiddleNight,
-                            style: titleSmall(context),
                           ),
                           _MySwitch(
                             onChanged: (val) async {
@@ -232,14 +218,12 @@ class _ThikrEvreyDayScreenState extends State<ThikrEvreyDayScreen> {
                     children: [
                       Text(
                         "سورة الملك",
-                        style: titleSmall(context),
                       ),
                       Row(
                         children: [
                           Text(
                             ManageNotificationController
                                 .timeRememberReadSurhAlMulk,
-                            style: titleSmall(context),
                           ),
                           _MySwitch(
                             onChanged: (val) async {
@@ -265,14 +249,12 @@ class _ThikrEvreyDayScreenState extends State<ThikrEvreyDayScreen> {
                     children: [
                       Text(
                         "الورد القرأن اليومي",
-                        style: titleSmall(context),
                       ),
                       Row(
                         children: [
                           Text(
                             ManageNotificationController
                                 .timeRememberReadQuranRoutine,
-                            style: titleSmall(context),
                           ),
                           _MySwitch(
                             onChanged: (val) async {

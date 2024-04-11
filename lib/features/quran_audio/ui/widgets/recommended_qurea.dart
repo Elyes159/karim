@@ -31,7 +31,6 @@ class _RecommendedQureaState extends State<RecommendedQurea> {
             children: [
               Text(
                 "قارئ أخر مقترح",
-                style: titleSmall(context),
               ),
             ],
           ),

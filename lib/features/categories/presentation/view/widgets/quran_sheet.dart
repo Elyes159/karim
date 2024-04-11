@@ -47,7 +47,6 @@ class QuranBooksDetail extends StatelessWidget {
                     ? Center(
                         child: Text(
                           "لا يوجد بيانات",
-                          style: titleMedium(context),
                         ),
                       )
                     : Column(
@@ -208,7 +207,6 @@ class _BtnDownloadState extends State<_BtnDownload> {
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               widget.data['extension_type'],
-                              style: titleMedium(context),
                             ),
                           ),
                         ],

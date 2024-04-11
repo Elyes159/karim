@@ -19,7 +19,6 @@ class ThikrSlider extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Text(
             "الورد اليومي",
-            style: titleMedium(context).copyWith(color: FxColors.primary),
           ),
         ),
         _item(
@@ -63,8 +62,6 @@ class _item extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
                 child: Text(
                   data,
-                  style: titleMedium(context)
-                      .copyWith(color: Colors.white, fontSize: 16),
                 ),
               ),
             ],

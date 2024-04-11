@@ -47,8 +47,6 @@ class _AthanTathkirState extends State<AthanTathkir> {
                   ),
                   Text(
                     "الاذان",
-                    style:
-                        titleSmall(context).copyWith(color: FxColors.primary),
                   ),
                 ],
               ),
@@ -66,7 +64,6 @@ class _AthanTathkirState extends State<AthanTathkir> {
                   children: [
                     Text(
                       "أذان الفجر ",
-                      style: titleSmall(context),
                     ),
                     Row(
                       children: [
@@ -95,7 +92,6 @@ class _AthanTathkirState extends State<AthanTathkir> {
                   children: [
                     Text(
                       "أذان الظهر",
-                      style: titleSmall(context),
                     ),
                     Row(
                       children: [
@@ -124,7 +120,6 @@ class _AthanTathkirState extends State<AthanTathkir> {
                   children: [
                     Text(
                       "أذان العصر ",
-                      style: titleSmall(context),
                     ),
                     Row(
                       children: [
@@ -153,7 +148,6 @@ class _AthanTathkirState extends State<AthanTathkir> {
                   children: [
                     Text(
                       "أذان المغرب ",
-                      style: titleSmall(context),
                     ),
                     Row(
                       children: [
@@ -182,7 +176,6 @@ class _AthanTathkirState extends State<AthanTathkir> {
                   children: [
                     Text(
                       "أذان العشاء",
-                      style: titleSmall(context),
                     ),
                     Row(
                       children: [

@@ -24,7 +24,7 @@ class ItemAllhName extends StatelessWidget {
             margin: const EdgeInsets.all(8),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              color: Theme.of(context).primaryColor,
+              color: Colors.blue[500],
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -33,10 +33,7 @@ class ItemAllhName extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                      child: Text(
-                        data['name']!,
-                        style: titleMedium(context),
-                      ),
+                      child: Text(data['name']!),
                     ),
                     Row(
                       children: [
@@ -62,7 +59,6 @@ class ItemAllhName extends StatelessWidget {
                 //
                 Text(
                   data['text']!,
-                  style: titleSmall(context),
                 ),
               ],
             ),

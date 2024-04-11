@@ -29,10 +29,6 @@ extension MyTextAuto on String {
   }) {
     return AutoSizeText(
       this,
-      style: titleMedium(context).copyWith(
-        fontSize: fontSize,
-        color: color,
-      ),
       minFontSize: minFontSize,
       maxLines: maxLines,
       textAlign: textAlign ?? TextAlign.right,

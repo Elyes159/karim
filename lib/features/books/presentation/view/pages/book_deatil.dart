@@ -204,7 +204,6 @@ class _ItemState extends State<_Item> {
                       Expanded(
                         child: Text(
                           widget.data['size'],
-                          style: titleMedium(context),
                         ),
                       ),
                       Container(

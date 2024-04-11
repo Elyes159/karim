@@ -37,7 +37,6 @@ class MyButton extends StatelessWidget {
             ),
             Text(
               text,
-              style: titleMedium(context),
             ),
           ],
         ),

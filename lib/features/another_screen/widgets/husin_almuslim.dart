@@ -57,7 +57,6 @@ class HisnMuslim extends StatelessWidget {
                     Expanded(
                       child: Text(
                         _keyHusin,
-                        style: titleSmall(context),
                       ),
                     ),
                     CircleAvatar(
@@ -106,7 +105,6 @@ class _bottomSheet extends StatelessWidget {
               Expanded(
                 child: Text(
                   _keyHusin,
-                  style: titleMedium(context),
                 ),
               ),
               Row(
@@ -134,7 +132,6 @@ class _bottomSheet extends StatelessWidget {
           //
           Text(
             _valueHusin,
-            style: titleSmall(context),
           ),
           const SizedBox(
             height: 5,

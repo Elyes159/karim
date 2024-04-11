@@ -83,7 +83,6 @@ class SabihScreen extends StatelessWidget {
                       backgroundColor: const Color.fromRGBO(253, 49, 34, 1),
                       child: Text(
                         "$masbahSize",
-                        style: titleSmall(context).copyWith(fontSize: 60),
                       ),
                     ),
                   ),

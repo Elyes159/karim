@@ -30,7 +30,6 @@ class ToastServes {
           Text(
             message ?? "هل تريد حفظ مكان قرائتك",
             softWrap: true,
-            style: titleMedium(context).copyWith(color: Colors.black),
           ),
         ],
       ),

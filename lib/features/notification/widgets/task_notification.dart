@@ -30,7 +30,6 @@ class TaskNotification extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: titleMedium(context),
                 ),
                 Text(
                   time,

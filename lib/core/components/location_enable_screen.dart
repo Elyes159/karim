@@ -1,13 +1,19 @@
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:quran_app/core/components/base_progress_button.dart';
 import 'package:quran_app/core/services/services_location.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:quran_app/core/shared/export/export-shared.dart';
 
-class LocationEnableScreen extends StatelessWidget {
-  const LocationEnableScreen({super.key});
+class LocationEnableScreen extends StatefulWidget {
+  const LocationEnableScreen({Key? key}) : super(key: key);
 
+  @override
+  _LocationEnableScreenState createState() => _LocationEnableScreenState();
+}
+
+class _LocationEnableScreenState extends State<LocationEnableScreen> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -25,11 +31,7 @@ class LocationEnableScreen extends StatelessWidget {
             child: Text(
               "قد لا تعمل بعض وظائف التطبيق بشكل صحيح لان موقعك الجغرافي غير مفعل لذلك لن نكون قادرين على معرفة اوقات الصلاة الصحيحه قم بتفعيل موقعك الجغرافي لكي نعرض اوقات الصلاه الصحيحه حسب موقعك الجغرافي",
               textAlign: TextAlign.center,
-              style: titleMedium(context).copyWith(
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-                color: FxColors.primary,
-              ),
+              style: GoogleFonts.poppins(fontSize: 15, color: Colors.white),
             ),
           ),
           MyProgressButton(
@@ -39,6 +41,8 @@ class LocationEnableScreen extends StatelessWidget {
             onPressed: () async {
               await Geolocator.openLocationSettings();
               await ServicesLocation.isLocationEnabled();
+              setState(
+                  () {}); // Rafraîchir l'écran après le changement de l'état
             },
           ),
         ],

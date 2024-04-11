@@ -32,7 +32,6 @@ class _AllSurahAudioState extends State<AllSurahAudio> {
               padding: const EdgeInsets.all(12.0),
               child: Text(
                 "سور أخرى",
-                style: titleMedium(context),
               ),
             ),
             ListView.builder(
@@ -256,7 +255,6 @@ class _BaseActionProgressState extends State<BaseActionProgress> {
 
                       BlocProvider.of<BaseBloc>(context)
                           .add(SetStateBaseBlocEvent());
-                          
                     },
                     icon: const Icon(Icons.play_arrow_outlined),
                   ),

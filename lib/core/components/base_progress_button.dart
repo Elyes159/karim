@@ -79,11 +79,6 @@ Widget getWidget(RequestState state, String? text, context, Color? colorText) {
     case RequestState.defaults:
       return Text(
         text ?? "إضافة",
-        style: titleMedium(context).copyWith(
-          color: colorText ?? Colors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: 20,
-        ),
       );
     case RequestState.loading:
       return const CircularProgressIndicator(

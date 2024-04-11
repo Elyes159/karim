@@ -54,11 +54,6 @@ class SnackBarMessage {
             Expanded(
               child: Text(
                 text ?? 'جاري الحذف',
-                style: titleMedium(context).copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  fontSize: 14,
-                ),
               ),
             ),
             Container(
@@ -134,11 +129,6 @@ class SnackBarMessage {
             Expanded(
               child: Text(
                 title ?? 'جاري الحذف',
-                style: titleMedium(context).copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  fontSize: 15,
-                ),
               ),
             ),
             InkWell(

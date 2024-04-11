@@ -37,7 +37,6 @@ class OfflineScreen extends StatelessWidget {
                           child: Center(
                             child: Text(
                               "لا يوجد تنزيلات بعد",
-                              style: titleMedium(context),
                             ),
                           ),
                         )
@@ -47,8 +46,6 @@ class OfflineScreen extends StatelessWidget {
                             Align(
                               child: Text(
                                 "التنزيلات",
-                                style: titleMedium(context)
-                                    .copyWith(color: FxColors.primary),
                               ),
                             ),
                             const SizedBox(height: 10),
@@ -67,7 +64,6 @@ class OfflineScreen extends StatelessWidget {
                             ),
                             Text(
                               "الكل",
-                              style: titleMedium(context),
                             ),
                             const Expanded(child: BuildItemOffline()),
                           ],
@@ -114,8 +110,6 @@ class _Item extends StatelessWidget {
                   Center(
                     child: Text(
                       type['title'],
-                      style: titleMedium(context)
-                          .copyWith(color: FxColors.primary),
                     ),
                   ),
                   Row(

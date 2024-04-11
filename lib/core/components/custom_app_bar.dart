@@ -38,7 +38,6 @@ class CustomAppBar extends StatelessWidget {
                 ),
             Text(
               text,
-              style: titleMedium(context),
             ),
           ],
         ),

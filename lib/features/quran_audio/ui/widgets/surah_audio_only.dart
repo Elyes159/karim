@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:quran_app/core/bloc/base_bloc.dart';
 import 'package:quran_app/core/components/base_header.dart';
@@ -38,7 +39,7 @@ class SurahAudioOnly extends StatelessWidget {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const BaseHeder(text: "الاستماع الى القرأن"),
+                  BaseHeder(text: "الاستماع الى القرأن"),
                   InkWell(
                     onTap: () {
                       navigateTo(const AudioHome(), context);
@@ -53,7 +54,7 @@ class SurahAudioOnly extends StatelessWidget {
                               padding: const EdgeInsets.all(8),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
-                                color: Theme.of(context).primaryColor,
+                                color: Colors.blue[500],
                               ),
                               child: Column(
                                 children: [
@@ -75,7 +76,7 @@ class SurahAudioOnly extends StatelessWidget {
                                               AudioPlayerHelper.currentAudioData
                                                   .imageReader!,
                                               fit: BoxFit.cover,
-                                              height: context.getHight(8),
+                                              height: context.getHight(10),
                                             ),
                                           ),
                                           const SizedBox(
@@ -91,7 +92,11 @@ class SurahAudioOnly extends StatelessWidget {
                                                 AudioPlayerHelper
                                                     .currentAudioData
                                                     .nameReader!,
-                                                style: titleSmall(context),
+                                                style: GoogleFonts.poppins(
+                                                    fontSize: 20,
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                               ),
                                               const SizedBox(
                                                 height: 5,
@@ -107,7 +112,9 @@ class SurahAudioOnly extends StatelessWidget {
                                                             AudioPlayerHelper
                                                                 .currentSurah]
                                                         .arabicName,
-                                                    style: titleSmall(context),
+                                                    style: GoogleFonts.poppins(
+                                                        color: Colors.white,
+                                                        fontSize: 18),
                                                   );
                                                 },
                                               ),
@@ -183,27 +190,33 @@ class _ActionProgress extends StatelessWidget {
               final currentPlaying = currentIndex == itemIndex;
 
               if (!(playing ?? false) || !currentPlaying) {
-                return CircleAvatar(
-                  radius: 18,
-                  backgroundColor: FxColors.primary,
-                  child: FittedBox(
-                    child: IconButton(
-                      onPressed: () {
-                        audioPlayer.play();
-                      },
-                      icon: const Icon(Icons.play_arrow_outlined),
+                return Container(
+                  decoration: BoxDecoration(color: Colors.blue[500]),
+                  child: CircleAvatar(
+                    radius: 18,
+                    backgroundColor: Colors.white,
+                    child: FittedBox(
+                      child: IconButton(
+                        onPressed: () {
+                          audioPlayer.play();
+                        },
+                        icon: const Icon(Icons.play_arrow_outlined),
+                      ),
                     ),
                   ),
                 );
               } else if (processingState != ProcessingState.completed) {
-                return CircleAvatar(
-                  radius: 18,
-                  backgroundColor: Colors.redAccent,
-                  child: FittedBox(
-                    child: IconButton(
-                      onPressed: audioPlayer.pause,
-                      icon: const Icon(
-                        Icons.stop_circle_outlined,
+                return Container(
+                  decoration: BoxDecoration(color: Colors.blue[500]),
+                  child: CircleAvatar(
+                    radius: 18,
+                    backgroundColor: Colors.redAccent,
+                    child: FittedBox(
+                      child: IconButton(
+                        onPressed: audioPlayer.pause,
+                        icon: const Icon(
+                          Icons.stop_circle_outlined,
+                        ),
                       ),
                     ),
                   ),

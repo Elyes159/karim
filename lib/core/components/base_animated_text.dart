@@ -16,7 +16,7 @@ class MyAnimatedTextTyper extends StatelessWidget {
     return SizedBox(
       // width: context.getWidth(90),
       child: DefaultTextStyle(
-        style: titleMedium(context),
+        style: TextStyle(color: Colors.black),
         child: AnimatedTextKit(
           pause: 2.seconds,
           totalRepeatCount: 1,

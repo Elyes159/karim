@@ -151,7 +151,6 @@ class NoDoau extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(
               'لايوجد لديك ادعيه حاليا',
-              style: titleLarge(context),
             ),
           ),
         ],

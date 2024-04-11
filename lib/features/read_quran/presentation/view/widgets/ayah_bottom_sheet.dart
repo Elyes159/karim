@@ -25,95 +25,91 @@ class AyahBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-          height: SizeConfig.blockSizeVertical! * 60,
-          padding: const EdgeInsets.all(8),
-          decoration: const BoxDecoration(
-            color: Color(0xff1e1e1e),
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(12),
-              topRight: Radius.circular(12),
+      height: SizeConfig.blockSizeVertical! * 60,
+      padding: const EdgeInsets.all(8),
+      decoration: const BoxDecoration(
+        color: Color(0xff1e1e1e),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(12),
+          topRight: Radius.circular(12),
+        ),
+      ),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(height: 5),
+            Text(
+              "السماع",
             ),
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const SizedBox(height: 5),
-                Text(
-                  "السماع",
-                  style: titleMedium(context).copyWith(color: FxColors.primary),
-                ),
-                const SizedBox(height: 10),
-                Container(
-                  margin: const EdgeInsets.symmetric(vertical: 10),
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: const Color(0xff2f2f2f),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: SliderAudio(audioPlayer: audioPlayer),
-                ),
-                Text(
-                  "الايه",
-                  style: titleMedium(context).copyWith(color: FxColors.primary),
-                ),
-                const SizedBox(height: 10),
-                Container(
-                  margin: const EdgeInsets.symmetric(vertical: 10),
-                  padding: const EdgeInsets.all(5),
-                  alignment: Alignment.centerRight,
-                  decoration: BoxDecoration(
-                    color: const Color(0xff2f2f2f),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Text(
-                  ayah??"",
-                    textAlign: TextAlign.right,
-                    style: const TextStyle(
-                      wordSpacing: 5,
-                      color: Colors.white,
-                      fontFamily: "quran",
-                      fontSize: 20,
-                      height: 2,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: Text(
-                    "تفسير الأية",
-                    style:
-                        titleMedium(context).copyWith(color: FxColors.primary),
-                  ),
-                ),
-                const Divider(),
-                Container(
-                  margin: const EdgeInsets.symmetric(vertical: 10),
-                  padding: const EdgeInsets.all(8),
-                  alignment: Alignment.centerRight,
-                  decoration: BoxDecoration(
-                    color: const Color(0xff2f2f2f),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Text(
-                    text ?? "",
-                    textAlign: TextAlign.right,
-                    style: const TextStyle(
-                      color: Colors.grey,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ],
+            const SizedBox(height: 10),
+            Container(
+              margin: const EdgeInsets.symmetric(vertical: 10),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: const Color(0xff2f2f2f),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: SliderAudio(audioPlayer: audioPlayer),
             ),
-          ),
-        );
+            Text(
+              "الايه",
+            ),
+            const SizedBox(height: 10),
+            Container(
+              margin: const EdgeInsets.symmetric(vertical: 10),
+              padding: const EdgeInsets.all(5),
+              alignment: Alignment.centerRight,
+              decoration: BoxDecoration(
+                color: const Color(0xff2f2f2f),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Text(
+                ayah ?? "",
+                textAlign: TextAlign.right,
+                style: const TextStyle(
+                  wordSpacing: 5,
+                  color: Colors.white,
+                  fontFamily: "quran",
+                  fontSize: 20,
+                  height: 2,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Text(
+                "تفسير الأية",
+              ),
+            ),
+            const Divider(),
+            Container(
+              margin: const EdgeInsets.symmetric(vertical: 10),
+              padding: const EdgeInsets.all(8),
+              alignment: Alignment.centerRight,
+              decoration: BoxDecoration(
+                color: const Color(0xff2f2f2f),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Text(
+                text ?? "",
+                textAlign: TextAlign.right,
+                style: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 

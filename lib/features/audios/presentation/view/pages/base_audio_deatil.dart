@@ -214,7 +214,6 @@ class _BtnDownloadState extends State<_BtnDownload> {
           children: [
             Text(
               widget.data['size'],
-              style: titleMedium(context),
             ),
             const SizedBox(width: 10),
             Container(

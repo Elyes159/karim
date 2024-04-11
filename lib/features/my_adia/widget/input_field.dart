@@ -39,7 +39,6 @@ class MyInputField extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     title!,
-                    style: titleSmall(context),
                   ),
                 )
               : Container(),
@@ -57,7 +56,6 @@ class MyInputField extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
-                      style: titleMedium(context).copyWith(),
                       maxLines: null,
                       cursorWidth: 2,
                       textAlign: textAlign ?? TextAlign.end,
@@ -69,13 +67,10 @@ class MyInputField extends StatelessWidget {
                       decoration: InputDecoration(
                         fillColor: Theme.of(context).primaryColor,
                         filled: false,
-                        hintStyle: textStyle ??
-                            titleSmall(context).copyWith(
-                              color: Color.fromARGB(191, 158, 158, 158),
-                            ),
                         hintText: hint,
                         enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Theme.of(context).primaryColor),
+                          borderSide:
+                              BorderSide(color: Theme.of(context).primaryColor),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         focusedBorder: UnderlineInputBorder(

@@ -110,7 +110,6 @@ class _Item extends StatelessWidget {
           Text(
             text,
             textAlign: TextAlign.center,
-            style: titleSmall(context).copyWith(),
           ),
         ],
       ),

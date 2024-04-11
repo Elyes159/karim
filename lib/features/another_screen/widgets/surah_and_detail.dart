@@ -105,7 +105,6 @@ class _bottomSheet extends StatelessWidget {
             //
             Text(
               "معنى الإسم",
-              style: titleSmall(context),
             ),
             const SizedBox(
               height: 10,
@@ -121,7 +120,6 @@ class _bottomSheet extends StatelessWidget {
             ),
             Text(
               "سبب التسمية",
-              style: titleSmall(context),
             ),
             const SizedBox(
               height: 10,
@@ -136,7 +134,6 @@ class _bottomSheet extends StatelessWidget {
             ),
             Text(
               "أسماء السورة",
-              style: titleSmall(context),
             ),
             const SizedBox(
               height: 10,
@@ -151,7 +148,6 @@ class _bottomSheet extends StatelessWidget {
             ),
             Text(
               "المقصد العلمي من السورة",
-              style: titleSmall(context),
             ),
             const SizedBox(
               height: 10,
@@ -166,7 +162,6 @@ class _bottomSheet extends StatelessWidget {
             ),
             Text(
               "سبب النزول",
-              style: titleSmall(context),
             ),
             const SizedBox(
               height: 10,
@@ -181,7 +176,6 @@ class _bottomSheet extends StatelessWidget {
             ),
             Text(
               "فضلها",
-              style: titleSmall(context),
             ),
             const SizedBox(
               height: 10,

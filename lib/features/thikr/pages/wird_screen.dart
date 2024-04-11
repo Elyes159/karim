@@ -59,9 +59,6 @@ class _WirdScreenState extends State<WirdScreen> {
                       DoaItem(
                         childPageNumber: Text(
                           "${wird.length - 1}/$current",
-                          style: titleSmall(context).copyWith(
-                            color: FxColors.primary,
-                          ),
                         ),
                         fontFamily: 'ios-1',
                         color: Theme.of(context).primaryColor,

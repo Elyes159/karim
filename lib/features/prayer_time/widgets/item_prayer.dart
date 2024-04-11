@@ -61,16 +61,11 @@ class _ItemPrayerState extends State<ItemPrayer> {
                       ),
                       Text(
                         widget.data.title,
-                        style: titleMedium(context),
                       ),
                     ],
                   ),
                   Text(
                     widget.data.time,
-                    style: titleMedium(context).copyWith(
-                      color: Colors.grey,
-                      fontSize: 17,
-                    ),
                   ),
                 ],
               ),

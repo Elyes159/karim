@@ -27,14 +27,12 @@ class PageViewSubih extends StatelessWidget {
                 children: [
                   Text(
                     data.title,
-                    style: titleMedium(context),
                   ),
                   const SizedBox(
                     height: 10,
                   ),
                   Text(
                     data.content,
-                    style: titleSmall(context).copyWith(color: Colors.grey),
                   ),
                 ],
               ),

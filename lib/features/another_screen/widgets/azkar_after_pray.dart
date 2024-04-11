@@ -35,7 +35,6 @@ class AzkarAfterPray extends StatelessWidget {
                 children: [
                   Text(
                     data['zekr'],
-                    style: titleMedium(context),
                   ),
                   const SizedBox(
                     height: 20,
@@ -50,16 +49,12 @@ class AzkarAfterPray extends StatelessWidget {
                             : Expanded(
                                 child: Text(
                                   "العدد: ${data['bless']}",
-                                  style: titleSmall(context).copyWith(
-                                      color: Colors.grey, fontSize: 12),
                                 ),
                               ),
                         data['repeat'] == ""
                             ? Container()
                             : Text(
                                 "التكرار :  ${data['repeat']}",
-                                style: titleSmall(context)
-                                    .copyWith(color: Colors.grey, fontSize: 12),
                               ),
                       ],
                     ),

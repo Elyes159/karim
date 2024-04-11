@@ -67,8 +67,6 @@ import 'package:quran_app/core/theme/themeData.dart';
 //   }
 // }
 
-
-
 void showMyAlert({
   required BuildContext context,
 }) {
@@ -77,12 +75,9 @@ void showMyAlert({
     builder: (BuildContext context) => CupertinoAlertDialog(
       title: Text(
         'تنبيه',
-        style: titleMedium(context)
-            .copyWith(fontSize: 20, color: Colors.red),
       ),
       content: Text(
         'هل أنت متأكد من الخروج من التطبيق',
-        style: titleMedium(context).copyWith(fontSize: 14),
       ),
       actions: <CupertinoDialogAction>[
         CupertinoDialogAction(
@@ -91,7 +86,6 @@ void showMyAlert({
           },
           child: Text(
             'نعم',
-            style: titleMedium(context),
           ),
         ),
         CupertinoDialogAction(
@@ -100,7 +94,6 @@ void showMyAlert({
           },
           child: Text(
             'لا',
-            style: titleMedium(context),
           ),
         ),
       ],

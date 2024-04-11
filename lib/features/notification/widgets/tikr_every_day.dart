@@ -124,7 +124,6 @@ class MySwitchListTile extends StatelessWidget {
           : null,
       title: Text(
         text,
-        style: titleSmall(context),
       ),
     );
   }

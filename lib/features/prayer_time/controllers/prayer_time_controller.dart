@@ -70,10 +70,16 @@ class PrayerTimeController {
       PrayerTime24Hour.prayMagrib = DateFormat.Hm().format(prayerTimes.maghrib);
       PrayerTime24Hour.prayIsha = DateFormat.Hm().format(prayerTimes.isha);
       //
-      DateTime? currentPrayerTime = prayerTimes.timeForPrayer(currentPlayer);
+      prayerTimes.timeForPrayer(currentPlayer);
       next = prayerTimes.nextPrayer();
-      nextPrayerTime =
-          DateFormat.jm().format(prayerTimes.timeForPrayer(next!)!);
+      if (next != null) {
+        nextPrayerTime =
+            DateFormat.jm().format(prayerTimes.timeForPrayer(next!)!);
+      } else {
+        logger.e(
+            'EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE');
+      }
+
       nextDateTimePrayer = prayerTimes.timeForPrayer(next!);
     } catch (e) {
       logger.e(e);

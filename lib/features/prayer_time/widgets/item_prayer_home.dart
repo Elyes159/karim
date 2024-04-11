@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -54,76 +55,79 @@ class _ItemPrayerHomeState extends State<ItemPrayerHome> {
       builder: (context, state) {
         return !serviceEnabled
             ? const LocationEnableScreen()
-            : Column(
-                children: [
-                  Row(
-                    children: [
-                      ElevatedButton(
-                        onPressed: () async {
-                          await FirebaseAuth.instance.signOut();
-                          navigateTo(Login(), context);
-                        },
-                        child: Text(
-                          "تسجيل خروج",
-                          style: GoogleFonts.poppins(
-                            color: Colors.white,
-                            fontSize: _fontSize,
+            : Padding(
+                padding: const EdgeInsets.only(
+                    right: 8.0, left: 8, bottom: 8, top: 30),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        BaseHeder(text: "اوقات الصلاة"),
+                        ElevatedButton(
+                          onPressed: () async {
+                            await FirebaseAuth.instance.signOut();
+                            navigateTo(
+                              SettingsPage(initialFontSize: _fontSize),
+                              context,
+                            );
+                          },
+                          child: Icon(
+                            Icons.settings,
+                            color: Colors.blue[500],
                           ),
                         ),
-                      ),
-                      BaseHeder(text: "اوقات الصلاة"),
-                      ElevatedButton(
-                        onPressed: () async {
-                          await FirebaseAuth.instance.signOut();
-                          navigateTo(
-                            SettingsPage(initialFontSize: _fontSize),
-                            context,
-                          );
-                        },
-                        child: Icon(Icons.settings),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    height: context.getHight(15),
-                    child: BlocBuilder<PrayerTimeCubit, PrayerTimeState>(
-                      builder: (context, state) {
-                        switch (state.prayerState) {
-                          case RequestState.defaults:
-                            return const _Loading();
-
-                          case RequestState.loading:
-                            return const _Loading();
-
-                          case RequestState.error:
-                            return const _Loading();
-
-                          case RequestState.success:
-                            return ListView.builder(
-                              physics: const BouncingScrollPhysics(),
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (context, index) {
-                                var data = prayerData[index];
-                                return BaseAnimate(
-                                  index: index,
-                                  child: _ItemPrayer(
-                                    nextPray: data,
-                                    data: data,
-                                    index: index,
-                                    nextCurrent: nextCurrentPrayer,
-                                  ),
-                                );
-                              },
-                              shrinkWrap: true,
-                              itemCount: 6,
-                            );
-                        }
-                      },
+                        ElevatedButton(
+                            onPressed: () async {
+                              await FirebaseAuth.instance.signOut();
+                              navigateTo(Login(), context);
+                            },
+                            child: Icon(
+                              Icons.logout,
+                              color: Colors.blue[500],
+                            )),
+                      ],
                     ),
-                  ),
-                ],
-              ).animate().fade();
+                    SizedBox(
+                      width: double.infinity,
+                      height: context.getHight(15),
+                      child: BlocBuilder<PrayerTimeCubit, PrayerTimeState>(
+                        builder: (context, state) {
+                          switch (state.prayerState) {
+                            case RequestState.defaults:
+                              return const _Loading();
+
+                            case RequestState.loading:
+                              return const _Loading();
+
+                            case RequestState.error:
+                              return const _Loading();
+
+                            case RequestState.success:
+                              return ListView.builder(
+                                physics: const BouncingScrollPhysics(),
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (context, index) {
+                                  var data = prayerData[index];
+                                  return BaseAnimate(
+                                    index: index,
+                                    child: _ItemPrayer(
+                                      nextPray: data,
+                                      data: data,
+                                      index: index,
+                                      nextCurrent: nextCurrentPrayer,
+                                    ),
+                                  );
+                                },
+                                shrinkWrap: true,
+                                itemCount: 6,
+                              );
+                          }
+                        },
+                      ),
+                    ),
+                  ],
+                ).animate().fade(),
+              );
       },
     );
   }
@@ -155,8 +159,8 @@ class _ItemPrayerState extends State<_ItemPrayer> {
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: Theme.of(context).primaryColor,
+        borderRadius: BorderRadius.circular(20),
+        color: Colors.blue,
         border: widget.nextCurrent == widget.index
             ? Border.all(color: Colors.white)
             : null,
@@ -168,31 +172,29 @@ class _ItemPrayerState extends State<_ItemPrayer> {
             isMaxLine = !isMaxLine;
             setState(() {});
           },
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Image.asset(
-                    widget.data.image,
+          child: Container(
+            decoration: BoxDecoration(color: Colors.blue),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.asset(
+                      widget.data.image,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 10),
-              Text(
-                widget.data.title,
-                style: titleMedium(context),
-              ),
-              const SizedBox(height: 5),
-              Text(
-                widget.data.time,
-                style: titleMedium(context).copyWith(
-                  color: Colors.grey,
-                  fontSize: 17,
+                const SizedBox(height: 10),
+                Text(
+                  widget.data.title,
                 ),
-              ),
-            ],
+                const SizedBox(height: 5),
+                Text(
+                  widget.data.time,
+                ),
+              ],
+            ),
           ),
         ),
       ),
