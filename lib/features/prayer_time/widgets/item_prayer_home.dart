@@ -57,7 +57,7 @@ class _ItemPrayerHomeState extends State<ItemPrayerHome> {
             ? const LocationEnableScreen()
             : Padding(
                 padding: const EdgeInsets.only(
-                    right: 8.0, left: 8, bottom: 8, top: 30),
+                    right: 8.0, left: 8, bottom: 8, top: 8),
                 child: Column(
                   children: [
                     Row(

@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:quran_app/core/bloc/base_bloc.dart';
 import 'package:quran_app/core/components/base_home.dart';
-import 'package:quran_app/core/theme/dark_theme.dart';
 
 import 'package:quran_app/core/util/toast_manager.dart';
 import 'package:quran_app/core/shared/export/export-shared.dart';
@@ -15,9 +14,7 @@ import 'package:quran_app/features/home/pages/home_screen.dart';
 import 'package:quran_app/features/home/widgets/custom_bottom_navigation_bar2.dart';
 import 'package:quran_app/features/home/widgets/next_player.dart';
 import 'package:quran_app/languages/languages_constants.dart';
-import 'package:quran_app/main.dart';
 
-import 'core/AppLocalizations/AppLocalizations.dart';
 import 'core/services/get_cash_data.dart';
 import 'core/services/services_notification.dart';
 import 'core/util/exit_alert.dialog.dart';
