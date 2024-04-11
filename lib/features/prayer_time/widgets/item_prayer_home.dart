@@ -20,6 +20,7 @@ import 'package:quran_app/starting/signin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/services/services_location.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ItemPrayerHome extends StatefulWidget {
   const ItemPrayerHome({Key? key}) : super(key: key);
@@ -62,7 +63,35 @@ class _ItemPrayerHomeState extends State<ItemPrayerHome> {
                   children: [
                     Row(
                       children: [
-                        BaseHeder(text: "اوقات الصلاة"),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 8.0, horizontal: 15),
+                          child: SizedBox(
+                            height: context.getHight(4),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  height: double.infinity,
+                                  width: context.getWidth(1),
+                                  decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                ),
+                                const SizedBox(width: 5),
+                                Text(
+                                  // AppLocalizations.of(context)!.salet,
+                                  "kdsf,",
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 22,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                         ElevatedButton(
                           onPressed: () async {
                             await FirebaseAuth.instance.signOut();

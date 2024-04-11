@@ -9,7 +9,7 @@ class Language {
     return <Language>[
       Language(1, "francais", 'fr'),
       Language(1, "arabe", 'ar'),
-      Language(1, "angalais", 'en'),
+      Language(1, "anglais", 'en'),
     ];
   }
 }

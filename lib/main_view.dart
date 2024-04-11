@@ -79,18 +79,18 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         builder: (_, child) => MaterialApp(
           builder: BotToastInit(), //1. call BotToastInit
           navigatorObservers: [BotToastNavigatorObserver()],
-          home: HomeScreenNew(),
+          home: const HomeScreenNew(),
           localizationsDelegates: const [
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate
           ],
-          supportedLocales: [
+          supportedLocales: const [
             Locale('en', ''),
             Locale('ar', ''),
             Locale('fr', '')
           ],
-          locale: Locale('ar', ''),
+          locale: _locale,
         ),
       ),
     );
