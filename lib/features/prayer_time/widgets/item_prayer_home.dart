@@ -1,12 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:quran_app/FontSizeParam/settingFont.dart';
-import 'package:quran_app/core/components/base_header.dart';
 import 'package:quran_app/core/components/location_enable_screen.dart';
 import 'package:quran_app/core/components/shimmer_base.dart';
 import 'package:quran_app/core/failure/request_state.dart';
@@ -16,6 +13,7 @@ import 'package:quran_app/features/prayer_time/cubit/prayer_time_cubit.dart';
 import 'package:quran_app/features/prayer_time/model/time_prayer_model.dart';
 import 'package:quran_app/features/prayer_time/pages/prayer_time_screen.dart';
 import 'package:quran_app/features/prayer_time/text/teme_prayer_text.dart';
+import 'package:quran_app/languages/languages_constants.dart';
 import 'package:quran_app/starting/signin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -81,12 +79,14 @@ class _ItemPrayerHomeState extends State<ItemPrayerHome> {
                                 ),
                                 const SizedBox(width: 5),
                                 Text(
-                                  // AppLocalizations.of(context)!.salet,
-                                  "kdsf,",
+                                  AppLocalizations.of(context)!.salet,
+                                  // translation(context).salet,
+                                  // Utilisation de ?? '' pour éviter les erreurs si la localisation est null
                                   style: GoogleFonts.poppins(
-                                      fontSize: 22,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold),
+                                    fontSize: 22,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ],
                             ),
@@ -202,7 +202,7 @@ class _ItemPrayerState extends State<_ItemPrayer> {
             setState(() {});
           },
           child: Container(
-            decoration: BoxDecoration(color: Colors.blue),
+            decoration: const BoxDecoration(color: Colors.blue),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [

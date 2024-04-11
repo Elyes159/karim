@@ -21,6 +21,7 @@ import 'core/services/get_cash_data.dart';
 import 'core/services/services_notification.dart';
 import 'core/util/exit_alert.dialog.dart';
 import 'features/prayer_time/cubit/prayer_time_cubit.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void setLastRead() async {
   await CashHelper.setData(
@@ -80,16 +81,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           builder: BotToastInit(), //1. call BotToastInit
           navigatorObservers: [BotToastNavigatorObserver()],
           home: const HomeScreenNew(),
-          localizationsDelegates: const [
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate
-          ],
-          supportedLocales: const [
-            Locale('en', ''),
-            Locale('ar', ''),
-            Locale('fr', '')
-          ],
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           locale: _locale,
         ),
       ),

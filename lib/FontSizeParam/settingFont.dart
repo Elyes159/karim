@@ -52,9 +52,8 @@ class _SettingsPageState extends State<SettingsPage> {
                         children: <Widget>[
                           Text(
                             e.name,
-                            style: const TextStyle(fontSize: 30),
+                            style: const TextStyle(fontSize: 15),
                           ),
-                          Text(e.name)
                         ],
                       ),
                     ),

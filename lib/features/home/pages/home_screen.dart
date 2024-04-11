@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreenNew> {
 
   @override
   Widget build(BuildContext context) {
-    return BaseHome(
+    return const BaseHome(
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(8),
