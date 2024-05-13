@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:quran_app/localizations/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 const String LAGUAGE_CODE = 'languageCode';
 

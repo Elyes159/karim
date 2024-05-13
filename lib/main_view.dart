@@ -16,12 +16,12 @@ import 'package:quran_app/features/home/pages/home_screen.dart';
 import 'package:quran_app/features/home/widgets/custom_bottom_navigation_bar2.dart';
 import 'package:quran_app/features/home/widgets/next_player.dart';
 import 'package:quran_app/languages/languages_constants.dart';
+import 'package:quran_app/localizations/app_localizations.dart';
 
 import 'core/services/get_cash_data.dart';
 import 'core/services/services_notification.dart';
 import 'core/util/exit_alert.dialog.dart';
 import 'features/prayer_time/cubit/prayer_time_cubit.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void setLastRead() async {
   await CashHelper.setData(
@@ -47,7 +47,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   setLocale(Locale locale) {
     setState(() {
       _locale = locale;
-    });
+    }); 
   }
 
   @override
@@ -81,8 +81,16 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           builder: BotToastInit(), //1. call BotToastInit
           navigatorObservers: [BotToastNavigatorObserver()],
           home: const HomeScreenNew(),
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: AppLocalizations.supportedLocales,
+          localizationsDelegates: [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: [
+            const Locale('en', 'US'),
+            const Locale('ar', 'SA'),
+          ],
           locale: _locale,
         ),
       ),

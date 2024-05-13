@@ -1,29 +1,40 @@
+import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:quran_app/features/home/pages/home_screen.dart';
 import 'package:quran_app/languages/languages.dart';
 import 'package:quran_app/languages/languages_constants.dart';
 import 'package:quran_app/main_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsPage extends StatefulWidget {
-  final double initialFontSize;
-
-  SettingsPage({required this.initialFontSize});
-
   @override
   _SettingsPageState createState() => _SettingsPageState();
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  late double _fontSize;
+  TextEditingController _fontSizeController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _fontSize = widget.initialFontSize;
   }
 
   @override
   Widget build(BuildContext context) {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+
+    String? getUserUID() {
+      User? user = _auth.currentUser;
+      if (user != null) {
+        return user.uid;
+      } else {
+        return null;
+      }
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Paramètres'),
@@ -72,24 +83,33 @@ class _SettingsPageState extends State<SettingsPage> {
               'Taille de la police',
               style: Theme.of(context).textTheme.headline6,
             ),
-            Slider(
-              value: _fontSize,
-              min: 12.0,
-              max: 24.0,
-              onChanged: (newValue) {
-                setState(() {
-                  _fontSize = newValue;
-                });
-              },
-            ),
-            Text(
-              '$_fontSize',
-              style: TextStyle(fontSize: 20),
+            TextFormField(
+              controller: _fontSizeController, // Utilisez le contrôleur ici
+              keyboardType: TextInputType.numberWithOptions(decimal: true),
+
+              decoration: InputDecoration(
+                labelText: 'Taille de la police',
+                border: OutlineInputBorder(),
+              ),
             ),
             ElevatedButton(
-              onPressed: () {
-                _saveFontSize(_fontSize);
-                Navigator.pop(context, _fontSize);
+              onPressed: () async {
+                String? userUID = await getUserUID();
+                if (userUID != null) {
+                  // Ajouter la valeur à Firestore avec le userUID comme identifiant de document
+                  FirebaseFirestore.instance
+                      .collection('settings')
+                      .doc(userUID)
+                      .set({
+                    'fontSize': _fontSizeController.text,
+                  });
+                  print("font size ajoutééééé");
+                } else {
+                  print(
+                      "FUIEZOIFEZEZNEZOINCOIEZNCOIEZNCOIENOIENOIECOIEZNCOIEZNOIEZCOIENOIENCOIEZNOIEZNCOIEZNCEZNOCIEZNC");
+                }
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => HomeScreenNew()));
               },
               child: Text('Enregistrer'),
             ),
@@ -97,10 +117,5 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
       ),
     );
-  }
-
-  Future<void> _saveFontSize(double fontSize) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setDouble('fontSize', fontSize);
   }
 }

@@ -14,11 +14,11 @@ import 'package:quran_app/features/prayer_time/model/time_prayer_model.dart';
 import 'package:quran_app/features/prayer_time/pages/prayer_time_screen.dart';
 import 'package:quran_app/features/prayer_time/text/teme_prayer_text.dart';
 import 'package:quran_app/languages/languages_constants.dart';
+import 'package:quran_app/localizations/app_localizations.dart';
 import 'package:quran_app/starting/signin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/services/services_location.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ItemPrayerHome extends StatefulWidget {
   const ItemPrayerHome({Key? key}) : super(key: key);
@@ -32,7 +32,7 @@ class _ItemPrayerHomeState extends State<ItemPrayerHome> {
   @override
   void initState() {
     super.initState();
-    _loadFontSize();
+    loadFontSize();
   }
 
   @override
@@ -41,11 +41,11 @@ class _ItemPrayerHomeState extends State<ItemPrayerHome> {
     super.dispose();
   }
 
-  Future<void> _loadFontSize() async {
+  double fontSize = 16.0; // Valeur par défaut
+
+  void loadFontSize() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _fontSize = prefs.getDouble('fontSize') ?? 16.0;
-    });
+    _fontSize = prefs.getDouble('fontSize') ?? _fontSize;
   }
 
   @override
@@ -79,11 +79,12 @@ class _ItemPrayerHomeState extends State<ItemPrayerHome> {
                                 ),
                                 const SizedBox(width: 5),
                                 Text(
-                                  AppLocalizations.of(context)!.salet,
+                                  AppLocalizations.of(context)!
+                                      .translate("salet"),
                                   // translation(context).salet,
                                   // Utilisation de ?? '' pour éviter les erreurs si la localisation est null
                                   style: GoogleFonts.poppins(
-                                    fontSize: 22,
+                                    fontSize: fontSize,
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -92,28 +93,6 @@ class _ItemPrayerHomeState extends State<ItemPrayerHome> {
                             ),
                           ),
                         ),
-                        ElevatedButton(
-                          onPressed: () async {
-                            await FirebaseAuth.instance.signOut();
-                            navigateTo(
-                              SettingsPage(initialFontSize: _fontSize),
-                              context,
-                            );
-                          },
-                          child: Icon(
-                            Icons.settings,
-                            color: Colors.blue[500],
-                          ),
-                        ),
-                        ElevatedButton(
-                            onPressed: () async {
-                              await FirebaseAuth.instance.signOut();
-                              navigateTo(Login(), context);
-                            },
-                            child: Icon(
-                              Icons.logout,
-                              color: Colors.blue[500],
-                            )),
                       ],
                     ),
                     SizedBox(

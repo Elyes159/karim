@@ -14,7 +14,7 @@ class Customlogo extends StatelessWidget {
           borderRadius: BorderRadius.circular(100),
         ),
         child: Image.asset(
-          "images/logo.png",
+          "assets/image/logo.jpg",
           height: 80,
           //fit: BoxFit.fill,
         ),

@@ -223,10 +223,8 @@ class _SignupState extends State<Signup> {
         'age': age.text,
       });
 
-      // Créez la collection 'courses' pour l'utilisateur et ajoutez les cours avec les niveaux par défaut
       FirebaseAuth.instance.currentUser!.sendEmailVerification();
 
-      // Naviguez vers la page de connexion après l'inscription
       Navigator.of(context).push(PageRouteBuilder(
           transitionDuration: Duration.zero,
           pageBuilder: (context, animation, secondaryAnimation) => Login()));

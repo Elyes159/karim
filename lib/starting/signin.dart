@@ -126,7 +126,10 @@ class _LoginState extends State<Login> {
                             email: email.text,
                             password: password.text,
                           );
-                          navigateTo(const HomeScreenNew(), context);
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomeScreenNew()));
                         } on FirebaseAuthException catch (e) {
                           if (e.code == 'user-not-found') {
                             print('No user found for that email.');

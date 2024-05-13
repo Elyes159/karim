@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
@@ -19,7 +21,7 @@ import 'package:quran_app/core/BlocObserver/BlocObserver.dart';
 import 'package:quran_app/core/Home/cubit.dart';
 import 'package:quran_app/features/read_quran/data/data_source/data_client.dart';
 import 'package:quran_app/features/read_quran/presentation/bloc/read_quran_bloc.dart';
-import 'package:quran_app/l10n/l10n.dart';
+import 'package:quran_app/firebase_options.dart';
 import 'package:quran_app/starting/signin.dart';
 import 'package:sqflite/sqflite.dart';
 import 'features/my_adia/core/db/db_helper_note.dart';
@@ -32,10 +34,15 @@ Logger logger = Logger();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  if (Platform.isAndroid) {
+    await Firebase.initializeApp(
+      name: "quranmaster",
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  } else if (Platform.isIOS) {
+    await Firebase.initializeApp();
+  }
   await FlutterDownloader.initialize();
-
-  // Initialisation des blocs et autres services
   Bloc.observer = MyBlocObserver();
   await DBHelperDou.initDb();
   await DioHelper.init();
@@ -56,7 +63,7 @@ void main() async {
   await PermissionService.handelNotification();
 
   // Vérification de l'utilisateur actuel
-  User? user = FirebaseAuth.instance.currentUser;
+  User? user = FirebaseAuth.instance!.currentUser;
 
   // Configuration des blocs
   final providers = [
@@ -85,11 +92,9 @@ void main() async {
     MultiBlocProvider(
       providers: providers,
       child: MaterialApp(
-          // supportedLocales: L10n.all,
-          // locale: const Locale('en'),
-          // localizationsDelegates: const [
-          //   AppLocalizations.delegate,
-          // ],
+          // localizationsDelegates: AppLocalizations.localizationsDelegates,
+          // supportedLocales: AppLocalizations.supportedLocales,
+          // locale: _locale,
           home: app),
     ),
   );
