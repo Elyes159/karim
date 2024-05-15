@@ -10,55 +10,52 @@ class SurahWithAllDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseHome(
-      title: "معلومات حول السور",
-      body: ListView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: randomSurahDetail.length,
-        itemBuilder: (context, index) {
-          var data = randomSurahDetail[index];
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: randomSurahDetail.length,
+      itemBuilder: (context, index) {
+        var data = randomSurahDetail[index];
 
-          return BaseAnimate(
-            index: 0,
-            child: InkWell(
-              onTap: () {
-                context.showBottomSheet(
-                  child: _bottomSheet(data: data),
-                );
-              },
-              child: Container(
-                padding: const EdgeInsets.all(12),
-                margin: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: index % 2 == 0
-                      ? Theme.of(context).primaryColor
-                      : Colors.transparent,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "إسم السورة :${data['surah']}",
-                      style: const TextStyle(
-                        color: Colors.grey,
-                      ),
+        return BaseAnimate(
+          index: 0,
+          child: InkWell(
+            onTap: () {
+              context.showBottomSheet(
+                child: _bottomSheet(data: data),
+              );
+            },
+            child: Container(
+              padding: const EdgeInsets.all(12),
+              margin: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: index % 2 == 0
+                    ? Theme.of(context).primaryColor
+                    : Colors.transparent,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "إسم السورة :${data['surah']}",
+                    style: const TextStyle(
+                      color: Colors.grey,
                     ),
-                    CircleAvatar(
-                      backgroundColor: index % 2 == 0
-                          ? FxColors.primary
-                          : FxColors.primarySecondary,
-                      radius: 18,
-                      child: Text("${index + 1}"),
-                    ),
-                  ],
-                ),
+                  ),
+                  CircleAvatar(
+                    backgroundColor: index % 2 == 0
+                        ? FxColors.primary
+                        : FxColors.primarySecondary,
+                    radius: 18,
+                    child: Text("${index + 1}"),
+                  ),
+                ],
               ),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

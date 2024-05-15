@@ -45,89 +45,79 @@ class DouaHome extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          return BaseHome(
-            floatingActionButton: FloatingActionButton(
-              child: const Icon(Icons.add),
-              onPressed: () {
-                context.showBottomSheet(child: AddDua());
-              },
-            ),
-            body: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                if (AdiaCubit.get(context).doaList.isEmpty) const NoDoau(),
-                ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: AdiaCubit.get(context).doaList.length,
-                  shrinkWrap: true,
-                  itemBuilder: (_, index) {
-                    var data = AdiaCubit.get(context).doaList[index];
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              if (AdiaCubit.get(context).doaList.isEmpty) const NoDoau(),
+              ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                itemCount: AdiaCubit.get(context).doaList.length,
+                shrinkWrap: true,
+                itemBuilder: (_, index) {
+                  var data = AdiaCubit.get(context).doaList[index];
 
-                    return DoaItem(
-                      childPageNumber: Container(),
-                      color: defaultColor,
-                      content: data.content,
-                      number: '',
-                      text: data.title,
-                      onTap: () {
-                        context.showBottomSheet(
-                          child: SizedBox(
-                            height: 150,
-                            child: Center(
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: MyButtonCustom(
-                                      onTap: () {
-                                        AdiaCubit.get(context)
-                                            .deleteDoa(doaModel: data);
-                                      },
-                                      lable: 'حذف ',
-                                      color: Colors.red,
-                                    ),
+                  return DoaItem(
+                    childPageNumber: Container(),
+                    color: defaultColor,
+                    content: data.content,
+                    number: '',
+                    text: data.title,
+                    onTap: () {
+                      context.showBottomSheet(
+                        child: SizedBox(
+                          height: 150,
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: MyButtonCustom(
+                                    onTap: () {
+                                      AdiaCubit.get(context)
+                                          .deleteDoa(doaModel: data);
+                                    },
+                                    lable: 'حذف ',
+                                    color: Colors.red,
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: MyButtonCustom(
-                                      onTap: () {
-                                        navigateTo(
-                                          EditDua(
-                                            content: data.content,
-                                            title: data.title,
-                                            id: data.id,
-                                          ),
-                                          context,
-                                        );
-                                      },
-                                      lable: 'تعديل ',
-                                    ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: MyButtonCustom(
+                                    onTap: () {
+                                      navigateTo(
+                                        EditDua(
+                                          content: data.content,
+                                          title: data.title,
+                                          id: data.id,
+                                        ),
+                                        context,
+                                      );
+                                    },
+                                    lable: 'تعديل ',
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
-                        );
-                      },
-                      onLongPress: () {
-                        Clipboard.setData(
-                          ClipboardData(
-                            text:
-                                AdiaCubit.get(context).doaList[index].content!,
-                          ),
-                        ).then(
-                          (value) {
-                            ToastServes.showToast(message: 'تم النسخ بنجاح');
-                          },
-                        );
-                      },
-                    );
-                  },
-                ),
-              ],
-            ),
+                        ),
+                      );
+                    },
+                    onLongPress: () {
+                      Clipboard.setData(
+                        ClipboardData(
+                          text: AdiaCubit.get(context).doaList[index].content!,
+                        ),
+                      ).then(
+                        (value) {
+                          ToastServes.showToast(message: 'تم النسخ بنجاح');
+                        },
+                      );
+                    },
+                  );
+                },
+              ),
+            ],
           );
         },
       ),

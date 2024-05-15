@@ -9,19 +9,15 @@ class ManageNotificationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  BaseHome(
-      
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            //Tikr Every Day
-            TikrEveryDay(),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: const [
+        //Tikr Every Day
+        TikrEveryDay(),
 
-            //Athan Tathkir
-            AthanTathkir(),
-
-          ],
-        ),
-      );
+        //Athan Tathkir
+        AthanTathkir(),
+      ],
+    );
   }
 }

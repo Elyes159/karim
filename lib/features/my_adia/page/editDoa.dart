@@ -25,39 +25,37 @@ class EditDua extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          return BaseHome(
-            body: Column(
-              children: [
-                MyInputField(
-                  isTitle: true,
-                  title: 'العنوان',
-                  controller: titleController,
-                  hint: 'اضف عنوان الدعاء',
+          return Column(
+            children: [
+              MyInputField(
+                isTitle: true,
+                title: 'العنوان',
+                controller: titleController,
+                hint: 'اضف عنوان الدعاء',
+              ),
+              MyInputField(
+                isTitle: true,
+                title: 'المحتوى',
+                controller: contentController,
+                hint: 'اضف محتوى الدعاء',
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: MyButtonCustom(
+                  onTap: () {
+                    if (titleController.text.isNotEmpty &&
+                        contentController.text.isNotEmpty) {
+                      AdiaCubit.get(context).editDoa(
+                        content: contentController.text,
+                        title: titleController.text,
+                        id: id,
+                      );
+                    }
+                  },
+                  lable: 'تحديث',
                 ),
-                MyInputField(
-                  isTitle: true,
-                  title: 'المحتوى',
-                  controller: contentController,
-                  hint: 'اضف محتوى الدعاء',
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: MyButtonCustom(
-                    onTap: () {
-                      if (titleController.text.isNotEmpty &&
-                          contentController.text.isNotEmpty) {
-                        AdiaCubit.get(context).editDoa(
-                          content: contentController.text,
-                          title: titleController.text,
-                          id: id,
-                        );
-                      }
-                    },
-                    lable: 'تحديث',
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           );
         },
       ),

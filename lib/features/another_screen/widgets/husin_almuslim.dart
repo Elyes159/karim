@@ -13,66 +13,63 @@ class HisnMuslim extends StatelessWidget {
   List<String> footnoteHusin = [];
   @override
   Widget build(BuildContext context) {
-    return BaseHome(
-      title: "حصن المسلم",
-      body: ListView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: husinAlMuslim.length,
-        itemBuilder: (context, index) {
-          husinAlMuslim.forEach((key, value) {
-            keyHusin.add(key);
-            valueHusin.add(value['text'][0]);
-            footnoteHusin.add(value['footnote'][0]);
-            //
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: husinAlMuslim.length,
+      itemBuilder: (context, index) {
+        husinAlMuslim.forEach((key, value) {
+          keyHusin.add(key);
+          valueHusin.add(value['text'][0]);
+          footnoteHusin.add(value['footnote'][0]);
+          //
 
-            //
-          });
-          final _keyHusin = keyHusin[index];
-          final _footnoteHusin = footnoteHusin[index];
-          final _valueHusin = valueHusin[index];
-          return BaseAnimateFlipList(
-            index: 0,
-            child: InkWell(
-              onTap: () {
-                context.showBottomSheet(
-                  child: _bottomSheet(
-                      keyHusin: _keyHusin,
-                      valueHusin: _valueHusin,
-                      footnoteHusin: _footnoteHusin),
-                );
-              },
-              child: Container(
-                padding: const EdgeInsets.all(8),
-                margin: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: index % 2 == 0
-                      ? Theme.of(context).primaryColor
-                      : Colors.transparent,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        _keyHusin,
-                      ),
+          //
+        });
+        final _keyHusin = keyHusin[index];
+        final _footnoteHusin = footnoteHusin[index];
+        final _valueHusin = valueHusin[index];
+        return BaseAnimateFlipList(
+          index: 0,
+          child: InkWell(
+            onTap: () {
+              context.showBottomSheet(
+                child: _bottomSheet(
+                    keyHusin: _keyHusin,
+                    valueHusin: _valueHusin,
+                    footnoteHusin: _footnoteHusin),
+              );
+            },
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              margin: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: index % 2 == 0
+                    ? Theme.of(context).primaryColor
+                    : Colors.transparent,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Text(
+                      _keyHusin,
                     ),
-                    CircleAvatar(
-                      backgroundColor: index % 2 == 0
-                          ? FxColors.primary
-                          : FxColors.primarySecondary,
-                      radius: 18,
-                      child: Text("${index + 1}"),
-                    ),
-                  ],
-                ),
+                  ),
+                  CircleAvatar(
+                    backgroundColor: index % 2 == 0
+                        ? FxColors.primary
+                        : FxColors.primarySecondary,
+                    radius: 18,
+                    child: Text("${index + 1}"),
+                  ),
+                ],
               ),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

@@ -14,272 +14,269 @@ class ThikrEvreyDayScreen extends StatefulWidget {
 class _ThikrEvreyDayScreenState extends State<ThikrEvreyDayScreen> {
   @override
   Widget build(BuildContext context) {
-    return BaseHome(
-      body: Column(
-        children: [
-          _StyleContainer(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "سيتم ارسال اشعار عند كل وقت تم تحديده حسب كل ذكر",
-              ),
+    return Column(
+      children: [
+        _StyleContainer(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              "سيتم ارسال اشعار عند كل وقت تم تحديده حسب كل ذكر",
             ),
           ),
-          //
-          _StyleContainer(
-            child: Row(
+        ),
+        //
+        _StyleContainer(
+          child: Row(
+            children: [
+              _MySwitch(
+                value: ManageNotificationController.isNotificationAllThirk,
+                onChanged: (val) async {
+                  //
+                  bool res =
+                      ManageNotificationController.isNotificationAllThirk = val;
+                  await CashHelper.setData(
+                    key: "isNotificationAllThirk",
+                    value: res,
+                  );
+                  ManageNotificationController.setValThirk();
+                  setState(() {});
+                },
+              ),
+              const SizedBox(
+                width: 5,
+              ),
+              Text(
+                "الأذكار اليومية",
+              ),
+            ],
+          ),
+        ),
+
+        //
+        _StyleContainer(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Column(
               children: [
-                _MySwitch(
-                  value: ManageNotificationController.isNotificationAllThirk,
-                  onChanged: (val) async {
-                    //
-                    bool res = ManageNotificationController
-                        .isNotificationAllThirk = val;
-                    await CashHelper.setData(
-                      key: "isNotificationAllThirk",
-                      value: res,
-                    );
-                    ManageNotificationController.setValThirk();
-                    setState(() {});
-                  },
+                //fagr
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "أذكار الصباح",
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          ManageNotificationController.timeRememberThikrMorning,
+                        ),
+                        _MySwitch(
+                          onChanged: (val) async {
+                            setState(() {});
+
+                            //
+                            bool res = ManageNotificationController
+                                .isNotificationThikrMorning = val;
+                            await CashHelper.setData(
+                              key: "isNotificationThikrMorning",
+                              value: res,
+                            );
+                          },
+                          value: ManageNotificationController
+                              .isNotificationThikrMorning,
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                const SizedBox(
-                  width: 5,
+                //duhr
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "أذكار المساء",
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          ManageNotificationController.timeRememberThikrNight,
+                        ),
+                        _MySwitch(
+                          onChanged: (val) async {
+                            //
+                            bool res = ManageNotificationController
+                                .isNotificationThikrNight = val;
+                            await CashHelper.setData(
+                              key: "isNotificationThikrNight",
+                              value: res,
+                            );
+                            setState(() {});
+                          },
+                          value: ManageNotificationController
+                              .isNotificationThikrNight,
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                Text(
-                  "الأذكار اليومية",
+                //asr
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "أذكار الإستيقاض",
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          ManageNotificationController.timeRememberThikrGetUp,
+                        ),
+                        _MySwitch(
+                          onChanged: (val) async {
+                            //
+                            bool res = ManageNotificationController
+                                .isNotificationThikrGetUp = val;
+                            await CashHelper.setData(
+                              key: "isNotificationThikrGetUp",
+                              value: res,
+                            );
+                            setState(() {});
+                          },
+                          value: ManageNotificationController
+                              .isNotificationThikrGetUp,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                //magrib
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "أذكار النوم",
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          ManageNotificationController.timeRememberThikrSleep,
+                        ),
+                        _MySwitch(
+                          onChanged: (val) async {
+                            //
+                            bool res = ManageNotificationController
+                                .isNotificationThikrSleep = val;
+                            await CashHelper.setData(
+                              key: "isNotificationThikrSleep",
+                              value: res,
+                            );
+                            setState(() {});
+                          },
+                          value: ManageNotificationController
+                              .isNotificationThikrSleep,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                //magrib
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "قيام اليل",
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          ManageNotificationController
+                              .timeRememberPrayerMiddleNight,
+                        ),
+                        _MySwitch(
+                          onChanged: (val) async {
+                            //
+                            bool res = ManageNotificationController
+                                .isNotificationPrayMiddleNight = val;
+                            await CashHelper.setData(
+                              key: "isNotificationPrayMiddleNight",
+                              value: res,
+                            );
+                            setState(() {});
+                          },
+                          value: ManageNotificationController
+                              .isNotificationPrayMiddleNight,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                //magrib
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "سورة الملك",
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          ManageNotificationController
+                              .timeRememberReadSurhAlMulk,
+                        ),
+                        _MySwitch(
+                          onChanged: (val) async {
+                            //
+                            bool res = ManageNotificationController
+                                .isNotificationReadSurahAlMulk = val;
+                            await CashHelper.setData(
+                              key: "isNotificationReadSurahAlMulk",
+                              value: res,
+                            );
+                            setState(() {});
+                          },
+                          value: ManageNotificationController
+                              .isNotificationReadSurahAlMulk,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                //magrib
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "الورد القرأن اليومي",
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          ManageNotificationController
+                              .timeRememberReadQuranRoutine,
+                        ),
+                        _MySwitch(
+                          onChanged: (val) async {
+                            //
+                            bool res = ManageNotificationController
+                                .isNotificationReadQuranRoutine = val;
+                            await CashHelper.setData(
+                              key: "isNotificationReadQuranRoutin",
+                              value: res,
+                            );
+                            setState(() {});
+                          },
+                          value: ManageNotificationController
+                              .isNotificationReadQuranRoutine,
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ],
             ),
           ),
-
-          //
-          _StyleContainer(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Column(
-                children: [
-                  //fagr
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "أذكار الصباح",
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            ManageNotificationController
-                                .timeRememberThikrMorning,
-                          ),
-                          _MySwitch(
-                            onChanged: (val) async {
-                              setState(() {});
-
-                              //
-                              bool res = ManageNotificationController
-                                  .isNotificationThikrMorning = val;
-                              await CashHelper.setData(
-                                key: "isNotificationThikrMorning",
-                                value: res,
-                              );
-                            },
-                            value: ManageNotificationController
-                                .isNotificationThikrMorning,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  //duhr
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "أذكار المساء",
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            ManageNotificationController.timeRememberThikrNight,
-                          ),
-                          _MySwitch(
-                            onChanged: (val) async {
-                              //
-                              bool res = ManageNotificationController
-                                  .isNotificationThikrNight = val;
-                              await CashHelper.setData(
-                                key: "isNotificationThikrNight",
-                                value: res,
-                              );
-                              setState(() {});
-                            },
-                            value: ManageNotificationController
-                                .isNotificationThikrNight,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  //asr
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "أذكار الإستيقاض",
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            ManageNotificationController.timeRememberThikrGetUp,
-                          ),
-                          _MySwitch(
-                            onChanged: (val) async {
-                              //
-                              bool res = ManageNotificationController
-                                  .isNotificationThikrGetUp = val;
-                              await CashHelper.setData(
-                                key: "isNotificationThikrGetUp",
-                                value: res,
-                              );
-                              setState(() {});
-                            },
-                            value: ManageNotificationController
-                                .isNotificationThikrGetUp,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  //magrib
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "أذكار النوم",
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            ManageNotificationController.timeRememberThikrSleep,
-                          ),
-                          _MySwitch(
-                            onChanged: (val) async {
-                              //
-                              bool res = ManageNotificationController
-                                  .isNotificationThikrSleep = val;
-                              await CashHelper.setData(
-                                key: "isNotificationThikrSleep",
-                                value: res,
-                              );
-                              setState(() {});
-                            },
-                            value: ManageNotificationController
-                                .isNotificationThikrSleep,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  //magrib
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "قيام اليل",
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            ManageNotificationController
-                                .timeRememberPrayerMiddleNight,
-                          ),
-                          _MySwitch(
-                            onChanged: (val) async {
-                              //
-                              bool res = ManageNotificationController
-                                  .isNotificationPrayMiddleNight = val;
-                              await CashHelper.setData(
-                                key: "isNotificationPrayMiddleNight",
-                                value: res,
-                              );
-                              setState(() {});
-                            },
-                            value: ManageNotificationController
-                                .isNotificationPrayMiddleNight,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  //magrib
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "سورة الملك",
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            ManageNotificationController
-                                .timeRememberReadSurhAlMulk,
-                          ),
-                          _MySwitch(
-                            onChanged: (val) async {
-                              //
-                              bool res = ManageNotificationController
-                                  .isNotificationReadSurahAlMulk = val;
-                              await CashHelper.setData(
-                                key: "isNotificationReadSurahAlMulk",
-                                value: res,
-                              );
-                              setState(() {});
-                            },
-                            value: ManageNotificationController
-                                .isNotificationReadSurahAlMulk,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  //magrib
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "الورد القرأن اليومي",
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            ManageNotificationController
-                                .timeRememberReadQuranRoutine,
-                          ),
-                          _MySwitch(
-                            onChanged: (val) async {
-                              //
-                              bool res = ManageNotificationController
-                                  .isNotificationReadQuranRoutine = val;
-                              await CashHelper.setData(
-                                key: "isNotificationReadQuranRoutin",
-                                value: res,
-                              );
-                              setState(() {});
-                            },
-                            value: ManageNotificationController
-                                .isNotificationReadQuranRoutine,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
